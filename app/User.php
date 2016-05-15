@@ -2,25 +2,29 @@
 
 namespace App;
 
+use DB;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+   protected $table = 'user';
+   protected $primaryKey = 'userid';
+
     protected $fillable = [
-        'name', 'email', 'password',
+        'userfirstname', 'userlastname', 'userlogin', 'userpasswd'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
-        'password', 'remember_token',
+        'userpasswd'
     ];
+
+    public $timestamps = false;
+
+   protected function auth($userlogin, $userpasswd)
+   {
+      return DB::table($this->table)
+         ->where('userlogin', $userlogin)
+         ->where('userpasswd', $userpasswd)
+         ->first();
+   }
 }

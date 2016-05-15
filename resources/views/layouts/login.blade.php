@@ -28,21 +28,18 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <style media="screen">
+       label,h1 {
+          color: #FFF;
+       }
+    </style>
+
 </head>
 
 <body>
 
-   <div id="wrapper">
-      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-         @include('layouts.header')
-         @include('layouts.sidebar')
-      </nav>
-
-      <div id="page-wrapper">
-         <div class="container-fluid">
-            @yield('content')
-         </div>
-      </div>
+   <div class="container-fluid">
+      @yield('content')
    </div>
 
 
