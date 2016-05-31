@@ -9,6 +9,7 @@ class User extends Authenticatable
 {
    protected $table = 'user';
    protected $primaryKey = 'userid';
+   public $timestamps = false;
 
     protected $fillable = [
         'userfirstname', 'userlastname', 'userlogin', 'userpasswd'
@@ -17,8 +18,6 @@ class User extends Authenticatable
     protected $hidden = [
         'userpasswd'
     ];
-
-    public $timestamps = false;
 
    protected function auth($userlogin, $userpasswd)
    {

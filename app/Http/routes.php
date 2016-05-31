@@ -11,8 +11,15 @@
 |
 */
 
+
+// Home route
 Route::get('/', 'HomeController@index');
 
+// Login route
 Route::get('/login', 'LoginController@index');
 Route::post('/login', 'LoginController@auth');
 Route::get('/logout', 'LoginController@logout');
+
+// Supplier route
+Route::get('/supplier', 'SupplierController@index');
+Route::get('/supplier/register', 'SupplierController@create');
