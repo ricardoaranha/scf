@@ -9,7 +9,7 @@
 </div>
 
 <div class="row">
-   <div class="col-md-4"><a href="{{ url('/supplier/register') }}" class="btn btn-success">Cadastrar</a></div>
+   <div class="col-md-4"><a href="{{ url('/invoice/register') }}" class="btn btn-success">Cadastrar</a></div>
    <div class="col-md-3 col-md-offset-5">
       <form class="form-inline">
          <div class="form-group">
@@ -29,44 +29,30 @@
          <thead>
             <tr>
                <th>
-                  Nome
+                  Número
                </th>
                <th>
-                  CPF/CNPJ
+                  Data Emissão
                </th>
                <th>
-                  Endereço
+                  Data Vencimento
                </th>
                <th>
-                  CEP
+                  Valor
                </th>
                <th>
-                  Complemento
+                  Fornecedor
                </th>
                <th>
-                  Telefone
+                  Status
                </th>
-               <th>
-                  Celular
-               </th>
-               <th>
-                  Nome Contato
-               </th>
-               <th>
-                  Email
-               </th>
-               <th>
-                  Data de Cadastro
-               </th>
-               <th>
-                  Opções
-               </th>
+               
             </tr>
          </thead>
 
          <tbody>
             <tr>
-               @foreach($suppliers as $key => $value)
+               @foreach($invoice as $key => $value)
 
                @endforeach
             </tr>
