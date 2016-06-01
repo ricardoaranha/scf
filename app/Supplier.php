@@ -30,6 +30,9 @@ class Supplier extends Model
      'celular2',
      'nomecontato',
      'email',
-     'datacadastro'
+     'datacadastro',
+     'idbanco',
+     'agencia',
+     'conta'
     ];
 }

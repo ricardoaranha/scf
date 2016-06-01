@@ -23,6 +23,7 @@ Route::get('/logout', 'LoginController@logout');
 // Supplier route
 Route::get('/supplier', 'SupplierController@index');
 Route::get('/supplier/register', 'SupplierController@create');
+Route::post('/supplier/register', 'SupplierController@save');
 
 // Invoice route
 Route::get('/invoice', 'InvoiceController@index');

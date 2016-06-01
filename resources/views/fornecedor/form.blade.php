@@ -8,7 +8,7 @@
    </div>
 </div>
 
-<form action="index.html" method="post">
+<form action="{{ url('/supplier/register') }}" method="post">
    {{ csrf_field() }}
    <div class="row">
       <div class="col-lg-12">
@@ -64,7 +64,7 @@
          <fieldset>
             <legend>Contato</legend>
 
-            <div class="form-group">
+            <div class="form-group" ng-show="pj">
                <label for="nomecontato">Nome do Contato:</label>
                <input type="text" class="form-control" name="nomecontato" id="nomecontato" placeholder="Nome do contato..." />
             </div>
@@ -133,6 +133,24 @@
                   <div class="form-group">
                      <label for="cep">CEP:</label>
                      <input type="text" class="form-control" name="cep" id="cep" placeholder="99999-999" />
+                  </div>
+               </div>
+            </div>
+
+            <div class="row">
+               <div class="col-lg-6">
+                  <div class="form-group">
+                     <label for="cidade">Cidade:</label>
+                     <input type="text" class="form-control" name="cidade" id="cidade" placeholder="Cidade..." />
+                  </div>
+               </div>
+
+               <div class="col-lg-6">
+                  <div class="form-group">
+                     <label for="uf">UF:</label>
+                     <select class="form-control" name="uf" id="uf">
+                        <option>---UF---</option>
+                     </select>
                   </div>
                </div>
             </div>
