@@ -23,3 +23,15 @@ Route::get('/logout', 'LoginController@logout');
 // Supplier route
 Route::get('/supplier', 'SupplierController@index');
 Route::get('/supplier/register', 'SupplierController@create');
+
+// Invoice route
+Route::get('/invoice', 'InvoiceController@index');
+Route::get('/invoice/register', 'InvoiceController@create');
+
+// Unit route
+Route::get('/unit', 'UnitController@index');
+Route::get('/unit/register', 'UnitController@create');
+
+// Bank route
+Route::get('/bank', 'BankController@index');
+Route::get('/bank/register', 'BankController@create');
