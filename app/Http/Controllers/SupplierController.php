@@ -91,9 +91,29 @@ class SupplierController extends Controller {
 
          return redirect()->action('SupplierController@index')
             ->with('class', 'success')
-            ->with('msg', 'Cadastro do Fornecedor '.$fornecedor.' realizado com sucesso!');
+            ->with('msg', 'Cadastro do Fornecedor "'.$fornecedor.'" realizado com sucesso!');
 
       }
+
+   }
+
+   public function delete($id) {
+
+      $supplier = Supplier::find($id);
+
+      if ($supplier['idtipo'] == 1) {
+         $fornecedor = $supplier['nomepf'];
+      }
+
+      if ($supplier['idtipo'] == 2) {
+         $fornecedor = $supplier['nomefantasia'];
+      }
+
+      $supplier->delete();
+
+      return redirect()->action('SupplierController@index')
+         ->with('class', 'success')
+         ->with('msg', 'Fornecedor "'.$fornecedor.'" excluido com sucesso!');
 
    }
 

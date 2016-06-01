@@ -64,7 +64,7 @@
                <th>
                   Conta
                </th>
-               <th>
+               <th colspan="2">
                   Opções
                </th>
             </tr>
@@ -113,6 +113,12 @@
                </td>
                <td>
                   {{ $value->nome }} <br /> {{ $value->agencia }} <br /> {{ $value->conta }}
+               </td>
+               <td>
+                  <a href="#"><span class="text-warning glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+               </td>
+               <td>
+                  <a href="{{ url('/supplier/delete/'.$value->idfornecedor) }}" onclick="return confirm('Você tem certeza disso?!')"><span class="text-danger glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                </td>
                @endforeach
             </tr>

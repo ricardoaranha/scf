@@ -24,6 +24,7 @@ Route::get('/logout', 'LoginController@logout');
 Route::get('/supplier', 'SupplierController@index');
 Route::get('/supplier/register', 'SupplierController@create');
 Route::post('/supplier/register', 'SupplierController@save');
+Route::get('/supplier/delete/{id}', 'SupplierController@delete');
 
 // Invoice route
 Route::get('/invoice', 'InvoiceController@index');
