@@ -8,6 +8,18 @@
    </div>
 </div>
 
+@include('layouts.msg')
+
+@if (count($errors) > 0)
+    <div class="alert alert-warning">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <form action="{{ url('/supplier/register') }}" method="post">
    {{ csrf_field() }}
    <div class="row">
@@ -149,7 +161,7 @@
                   <div class="form-group">
                      <label for="uf">UF:</label>
                      <select class="form-control" name="uf" id="uf">
-                        <option>---UF---</option>
+                        <option value="0">---UF---</option>
                      </select>
                   </div>
                </div>

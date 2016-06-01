@@ -8,8 +8,11 @@
    </div>
 </div>
 
+@include('layouts.msg')
+
 <div class="row">
    <div class="col-md-4"><a href="{{ url('/supplier/register') }}" class="btn btn-success">Cadastrar</a></div>
+
    <div class="col-md-3 col-md-offset-5">
       <form class="form-inline">
          <div class="form-group">
@@ -70,7 +73,47 @@
          <tbody>
             <tr>
                @foreach($suppliers as $key => $value)
-
+               <td>
+                  @if($value->idtipo == 1)
+                  {{ $value->nomepf }}
+                  @elseif($value->idtipo == 2)
+                  {{ $value->nomefantasia }}
+                  @endif
+               </td>
+               <td>
+                  @if($value->idtipo == 1)
+                  {{ $value->cpf }}
+                  @elseif($value->idtipo == 2)
+                  {{ $value->cnpj }}
+                  @endif
+               </td>
+               <td>
+                  Rua {{ $value->rua }}, nº {{ $value->numero }}, Bairro {{ $value->bairro }}
+               </td>
+               <td>
+                  {{ $value->cep }}
+               </td>
+               <td>
+                  {{ $value->complemento }}
+               </td>
+               <td>
+                  {{ $value->telefone1 }} <br /> {{ $value->telefone2 }}
+               </td>
+               <td>
+                  {{ $value->celular1 }} <br /> {{ $value->celular2 }}
+               </td>
+               <td>
+                  {{ $value->nomecontato }}
+               </td>
+               <td>
+                  {{ $value->email }}
+               </td>
+               <td>
+                  {{ date('d/m/Y', strtotime($value->datacadastro)) }}
+               </td>
+               <td>
+                  {{ $value->nome }} <br /> {{ $value->agencia }} <br /> {{ $value->conta }}
+               </td>
                @endforeach
             </tr>
          </tbody>

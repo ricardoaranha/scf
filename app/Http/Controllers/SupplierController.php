@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Supplier;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Validator;
 
 class SupplierController extends Controller {
 
@@ -12,7 +13,7 @@ class SupplierController extends Controller {
 
       $title = 'Fornecedores';
 
-      $suppliers = Supplier::all();
+      $suppliers = Supplier::leftjoin('banco', 'banco.idbanco', '=', 'fornecedor.idbanco')->get();
 
       return view('fornecedor.index', compact('title', 'suppliers'));
 
@@ -28,13 +29,12 @@ class SupplierController extends Controller {
 
    public function save(Request $request) {
 
-      $request = $request->all();
       $request['datacadastro'] = date('Y-m-d');
 
       $rules = [];
 
       $rules = [
-         'idtipo'       =>'required',
+         'idtipo'       => 'required',
          'rua'          => 'required',
          'numero'       => 'required',
          'bairro'       => 'required',
@@ -47,7 +47,7 @@ class SupplierController extends Controller {
          'celular1'     => '',
          'celular2'     => '',
          'email'        => 'required',
-         'datacadastro' =>'required',
+         'datacadastro' => 'required',
          'idbanco'      => 'required',
          'agencia'      => 'required',
          'conta'        => 'required'
@@ -59,6 +59,8 @@ class SupplierController extends Controller {
          $rules['cpf']        = 'required';
          $rules['celular1']   = 'required';
 
+         $fornecedor = $request['nomepf'];
+
       }
 
       if ($request['idtipo'] == 2) {
@@ -69,11 +71,29 @@ class SupplierController extends Controller {
          $rules['nomecontato']  = 'required';
          $rules['telefone1']    = 'required';
 
+         $fornecedor = $request['nomefantasia'];
+
       }
 
-      $validation = $this->validate($request,$rules);
+      $validator = Validator::make($request->all(), $rules);
 
-      return redirect()->action('SupplierController@index');
+      if ($validator->fails()) {
+
+         return redirect()->action('SupplierController@create')
+            ->with('class', 'danger')
+            ->with('msg', 'Erro ao tentar cadastrar o fornecedor, por favor atente para os erros listados abaixo:')
+            ->withErrors($validator)
+            ->withInput();
+
+      } else {
+
+         $supplier = Supplier::create($request->all());
+
+         return redirect()->action('SupplierController@index')
+            ->with('class', 'success')
+            ->with('msg', 'Cadastro do Fornecedor '.$fornecedor.' realizado com sucesso!');
+
+      }
 
    }
 
