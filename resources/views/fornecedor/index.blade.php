@@ -59,6 +59,9 @@
                   Data de Cadastro
                </th>
                <th>
+                  Conta
+               </th>
+               <th>
                   Opções
                </th>
             </tr>

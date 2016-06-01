@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
 
 <head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>SCF - {{ $title }}</title>
 
@@ -48,6 +49,13 @@
 
     <!-- jQuery -->
     <script src="{{ URL::asset('js/jquery.js') }}"></script>
+
+    <!-- AngularJS -->
+    <script src="{{ URL::asset('js/angular/angular.min.js') }}"></script>
+    <script src="{{ URL::asset('js/angular/angular-animate.min.js') }}"></script>
+    <script src="{{ URL::asset('js/app.js') }}">
+
+    </script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
