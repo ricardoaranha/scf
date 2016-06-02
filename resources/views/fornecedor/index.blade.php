@@ -38,15 +38,6 @@
                   CPF/CNPJ
                </th>
                <th>
-                  Endereço
-               </th>
-               <th>
-                  CEP
-               </th>
-               <th>
-                  Complemento
-               </th>
-               <th>
                   Telefone
                </th>
                <th>
@@ -58,13 +49,7 @@
                <th>
                   Email
                </th>
-               <th>
-                  Data de Cadastro
-               </th>
-               <th>
-                  Conta
-               </th>
-               <th colspan="2">
+               <th colspan="3">
                   Opções
                </th>
             </tr>
@@ -87,14 +72,6 @@
                   {{ $value->cnpj }}
                   @endif
                </td>
-               <td>
-                  Rua {{ $value->rua }}, nº {{ $value->numero }}, Bairro {{ $value->bairro }}
-               </td>
-               <td>
-                  {{ $value->cep }}
-               </td>
-               <td>
-                  {{ $value->complemento }}
                </td>
                <td>
                   {{ $value->telefone1 }} <br /> {{ $value->telefone2 }}
@@ -109,10 +86,7 @@
                   {{ $value->email }}
                </td>
                <td>
-                  {{ date('d/m/Y', strtotime($value->datacadastro)) }}
-               </td>
-               <td>
-                  {{ $value->nome }} <br /> {{ $value->agencia }} <br /> {{ $value->conta }}
+                  <a href="#"><span class="text-primary glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
                </td>
                <td>
                   <a href="#"><span class="text-warning glyphicon glyphicon-edit" aria-hidden="true"></span></a>

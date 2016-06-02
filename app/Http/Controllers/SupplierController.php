@@ -35,22 +35,22 @@ class SupplierController extends Controller {
 
       $rules = [
          'idtipo'       => 'required',
-         'rua'          => 'required',
-         'numero'       => 'required',
-         'bairro'       => 'required',
-         'cidade'       => 'required',
-         'uf'           => 'required',
-         'cep'          => 'required',
-         'complemento'  => '',
-         'telefone1'    => '',
-         'telefone2'    => '',
-         'celular1'     => '',
-         'celular2'     => '',
-         'email'        => 'required',
-         'datacadastro' => 'required',
-         'idbanco'      => 'required',
-         'agencia'      => 'required',
-         'conta'        => 'required'
+         // 'rua'          => 'required',
+         // 'numero'       => 'required',
+         // 'bairro'       => 'required',
+         // 'cidade'       => 'required',
+         // 'uf'           => 'required',
+         // 'cep'          => 'required',
+         // 'complemento'  => '',
+         // 'telefone1'    => '',
+         // 'telefone2'    => '',
+         // 'celular1'     => '',
+         // 'celular2'     => '',
+         // 'email'        => 'required',
+         // 'datacadastro' => 'required',
+         // 'idbanco'      => 'required',
+         // 'agencia'      => 'required',
+         // 'conta'        => 'required'
       ];
 
       if ($request['idtipo'] == 1) {
