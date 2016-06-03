@@ -11,7 +11,6 @@ class Bank extends Model
    public $timestamps = false;
 
     protected $fillable = [
-     'idbanco',
      'nome'
     ];
 }

@@ -32,7 +32,7 @@
          <thead>
             <tr>
                <th>
-                  Nome
+                  Nome/Razão Social
                </th>
                <th>
                   CPF/CNPJ
@@ -56,14 +56,14 @@
          </thead>
 
          <tbody>
-            
+
          @foreach($suppliers as $key => $value)
             <tr>
                <td>
                   @if($value->idtipo == 1)
                   {{ $value->nomepf }}
                   @elseif($value->idtipo == 2)
-                  {{ $value->nomefantasia }}
+                  {{ $value->nomepj }}
                   @endif
                </td>
                <td>
@@ -97,7 +97,7 @@
                </td>
             </tr>
          @endforeach
-            
+
          </tbody>
       </table>
    </div>

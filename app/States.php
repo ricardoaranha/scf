@@ -11,7 +11,6 @@ class States extends Model
    public $timestamps = false;
 
     protected $fillable = [
-     'idestado',
      'nome',
      'sigla'
     ];

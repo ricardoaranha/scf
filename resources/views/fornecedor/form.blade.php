@@ -45,12 +45,12 @@
 
             <div class="form-group">
                <label for="nomepf">Nome:</label>
-               <input type="text" class="form-control" name="nomepf" id="nomepf"  placeholder="Nome" required="required" />
+               <input type="text" class="form-control" name="nomepf" id="nomepf"  placeholder="Nome" ng-required="pf" />
             </div>
 
             <div class="form-group">
                <label for="cpf">CPF:</label>
-               <input type="text" class="form-control" name="cpf" id="cpf" placeholder="999.999.999-99" required="required"/>
+               <input type="text" class="form-control" name="cpf" id="cpf" placeholder="999.999.999-99" ng-required="pf"/>
             </div>
          </fieldset>
 
@@ -59,17 +59,17 @@
 
             <div class="form-group">
                <label for="nomepf">Nome:</label>
-               <input type="text" class="form-control" name="nomepj" id="nomepj"  placeholder="Nome" required="required"/>
+               <input type="text" class="form-control" name="nomepj" id="nomepj"  placeholder="Nome" ng-required="pj"/>
             </div>
 
             <div class="form-group">
                <label for="nomepf">Nome Fantasia:</label>
-               <input type="text" class="form-control" name="nomefantasia" id="nomnomefantasiaepj"  placeholder="Nome Fantasia" required="required" />
+               <input type="text" class="form-control" name="nomefantasia" id="nomnomefantasiaepj"  placeholder="Nome Fantasia" ng-required="pj" />
             </div>
 
             <div class="form-group">
                <label for="cnpj">CNPJ:</label>
-               <input type="text" class="form-control" name="cnpj" id="cnpj" placeholder="99.999.999/9999-99" required="required" />
+               <input type="text" class="form-control" name="cnpj" id="cnpj" placeholder="99.999.999/9999-99" ng-required="pj" />
             </div>
          </fieldset>
 
@@ -78,14 +78,14 @@
 
             <div class="form-group" ng-show="pj">
                <label for="nomecontato">Nome do Contato:</label>
-               <input type="text" class="form-control" name="nomecontato" id="nomecontato" placeholder="Nome do contato..." required="required" />
+               <input type="text" class="form-control" name="nomecontato" id="nomecontato" placeholder="Nome do contato..." ng-required="pj" />
             </div>
 
             <div class="row">
                <div class="col-lg-6">
                   <div class="form-grouṕ">
                      <label for="telefone1">Telefone 1:</label>
-                     <input type="text" class="form-control" name="telefone1" id="telefone1" placeholder="(99) 9999-9999" />
+                     <input type="text" class="form-control" name="telefone1" id="telefone1" placeholder="(99) 9999-9999" ng-required="pj" />
                   </div>
                </div>
 
@@ -106,7 +106,7 @@
                <div class="col-lg-6">
                   <div class="form-grouṕ">
                      <label for="celular1">Celular 1:</label>
-                     <input type="text" class="form-control" name="celular1" id="celular1" placeholder="(99) 9-9999-9999" />
+                     <input type="text" class="form-control" name="celular1" id="celular1" placeholder="(99) 9-9999-9999" ng-required="pf" />
                   </div>
                </div>
 

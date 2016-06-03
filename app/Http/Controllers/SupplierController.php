@@ -77,7 +77,7 @@ class SupplierController extends Controller {
          $rules['nomecontato']  = 'required';
          $rules['telefone1']    = 'required';
 
-         $fornecedor = $request['nomefantasia'];
+         $fornecedor = $request['nomepj'];
 
       }
 
@@ -100,6 +100,10 @@ class SupplierController extends Controller {
             ->with('msg', 'Cadastro do Fornecedor "'.$fornecedor.'" realizado com sucesso!');
 
       }
+
+   }
+
+   public function edit() {
 
    }
 

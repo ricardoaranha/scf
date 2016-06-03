@@ -11,7 +11,6 @@ class Invoice extends Model
    public $timestamps = false;
 
     protected $fillable = [
-     'idnotafiscal',
      'numeronota',
      'dtaemissoa',
      'dtavencimento',
