@@ -9,12 +9,7 @@
 </div>
 <div class="row">
    <div class="col-md-6 col-md-offset-3">
-      @if(Session::has('msg'))
-      <div class="alert alert-{{ session()->get('class') }} alert-dismissible" role="alert">
-         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-         <strong>{{ session()->get('msg') }}</strong>
-      </div>
-      @endif
+      @include('layouts.msg')
       <div class="col-md-8 col-md-offset-2">
          <form action="{{ URL::to('/login') }}" method="post">
             <fieldset>

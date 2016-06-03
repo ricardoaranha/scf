@@ -10,7 +10,7 @@
 
 @include('layouts.msg')
 
-@if (count($errors) > 0)
+@if(count($errors) > 0)
     <div class="alert alert-warning">
         <ul>
             @foreach ($errors->all() as $error)
@@ -58,7 +58,7 @@
             <legend>Pessoa Jurídica</legend>
 
             <div class="form-group">
-               <label for="nomepf">Nome:</label>
+               <label for="nomepf">Razão Social:</label>
                <input type="text" class="form-control" name="nomepj" id="nomepj"  placeholder="Nome" ng-required="pj"/>
             </div>
 

@@ -8,15 +8,15 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-   public function index()
-   {
+   public function index() {
+
       $title = 'Login';
 
       return view('login.login', compact('title'));
    }
 
-   public function auth(Request $request)
-   {
+   public function auth(Request $request) {
+
       $request = $request->all();
       $request['userpasswd'] = md5($request['userpasswd']);
       $user = User::auth($request['userlogin'],$request['userpasswd']);
@@ -40,11 +40,12 @@ class LoginController extends Controller
 
    }
 
-   public function logout(Request $request)
-   {
+   public function logout(Request $request) {
+
       $request->session()->flush();
       return redirect()->action('LoginController@index')
       ->with('class', 'success')
       ->with('msg', 'Logout realizado com sucesso!');
+
    }
 }
