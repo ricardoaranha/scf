@@ -29,11 +29,17 @@ Route::get('/supplier/delete/{id}', 'SupplierController@delete');
 // Invoice route
 Route::get('/invoice', 'InvoiceController@index');
 Route::get('/invoice/register', 'InvoiceController@create');
+Route::post('/invoice/register', 'InvoiceController@save');
+Route::get('/invoice/delete/{id}', 'InvoiceController@delete');
 
 // Unit route
 Route::get('/unit', 'UnitController@index');
 Route::get('/unit/register', 'UnitController@create');
+Route::post('/unit/register', 'UnitController@save');
+Route::get('/unit/delete/{id}', 'UnitController@delete');
 
 // Bank route
 Route::get('/bank', 'BankController@index');
 Route::get('/bank/register', 'BankController@create');
+Route::post('/bank/register', 'BankController@save');
+Route::get('/bank/delete/{id}', 'BankController@delete');

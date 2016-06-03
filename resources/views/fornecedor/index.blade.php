@@ -56,8 +56,9 @@
          </thead>
 
          <tbody>
+            
+         @foreach($suppliers as $key => $value)
             <tr>
-               @foreach($suppliers as $key => $value)
                <td>
                   @if($value->idtipo == 1)
                   {{ $value->nomepf }}
@@ -94,8 +95,9 @@
                <td>
                   <a href="{{ url('/supplier/delete/'.$value->idfornecedor) }}" onclick="return confirm('Você tem certeza disso?!')"><span class="text-danger glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                </td>
-               @endforeach
             </tr>
+         @endforeach
+            
          </tbody>
       </table>
    </div>

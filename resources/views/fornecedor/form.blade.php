@@ -28,7 +28,7 @@
             <label>Escolha o tipo de fornecedor:</label>
             <br />
             <label class="radio-inline">
-               <input type="radio" name="idtipo" id="idtipo" value="1" ng-click="pf = true; pj = false" /> Pressoa Física
+               <input type="radio" name="idtipo" id="idtipo" value="1" ng-click="pf = true; pj = false" /> Pessoa Física
             </label>
             <label class="radio-inline">
                <input type="radio" name="idtipo" id="idtipo" value="2" ng-click="pf = false; pj = true" checked /> Pessoa Jurídica
@@ -45,12 +45,12 @@
 
             <div class="form-group">
                <label for="nomepf">Nome:</label>
-               <input type="text" class="form-control" name="nomepf" id="nomepf"  placeholder="Nome" />
+               <input type="text" class="form-control" name="nomepf" id="nomepf"  placeholder="Nome" required="required" />
             </div>
 
             <div class="form-group">
                <label for="cpf">CPF:</label>
-               <input type="text" class="form-control" name="cpf" id="cpf" placeholder="999.999.999-99" />
+               <input type="text" class="form-control" name="cpf" id="cpf" placeholder="999.999.999-99" required="required"/>
             </div>
          </fieldset>
 
@@ -59,17 +59,17 @@
 
             <div class="form-group">
                <label for="nomepf">Nome:</label>
-               <input type="text" class="form-control" name="nomepj" id="nomepj"  placeholder="Nome" />
+               <input type="text" class="form-control" name="nomepj" id="nomepj"  placeholder="Nome" required="required"/>
             </div>
 
             <div class="form-group">
                <label for="nomepf">Nome Fantasia:</label>
-               <input type="text" class="form-control" name="nomefantasia" id="nomnomefantasiaepj"  placeholder="Nome Fantasia" />
+               <input type="text" class="form-control" name="nomefantasia" id="nomnomefantasiaepj"  placeholder="Nome Fantasia" required="required" />
             </div>
 
             <div class="form-group">
                <label for="cnpj">CNPJ:</label>
-               <input type="text" class="form-control" name="cnpj" id="cnpj" placeholder="99.999.999/9999-99" />
+               <input type="text" class="form-control" name="cnpj" id="cnpj" placeholder="99.999.999/9999-99" required="required" />
             </div>
          </fieldset>
 
@@ -78,7 +78,7 @@
 
             <div class="form-group" ng-show="pj">
                <label for="nomecontato">Nome do Contato:</label>
-               <input type="text" class="form-control" name="nomecontato" id="nomecontato" placeholder="Nome do contato..." />
+               <input type="text" class="form-control" name="nomecontato" id="nomecontato" placeholder="Nome do contato..." required="required" />
             </div>
 
             <div class="row">
@@ -162,6 +162,9 @@
                      <label for="uf">UF:</label>
                      <select class="form-control" name="uf" id="uf">
                         <option value="0">---UF---</option>
+                           @foreach($states as $key => $value)
+                              <option value="{{$value->sigla}}">{{ $value->nome }}</option>
+                           @endforeach
                      </select>
                   </div>
                </div>
@@ -180,6 +183,9 @@
                <label for="idbanco">Banco:</label>
                <select class="form-control" name="idbanco" id="idbanco">
                   <option value="0">---SELECIONE UM BANCO---</option>
+                     @foreach($bank as $key => $value)
+                        <option value="{{$value->idbanco}}">{{ $value->nome }}</option>
+                     @endforeach
                </select>
             </div>
 

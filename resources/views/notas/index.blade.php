@@ -8,6 +8,8 @@
    </div>
 </div>
 
+@include('layouts.msg')
+
 <div class="row">
    <div class="col-md-4"><a href="{{ url('/invoice/register') }}" class="btn btn-success">Cadastrar</a></div>
    <div class="col-md-3 col-md-offset-5">
@@ -51,11 +53,29 @@
          </thead>
 
          <tbody>
-            <tr>
-               @foreach($invoice as $key => $value)
-
-               @endforeach
-            </tr>
+            @foreach($invoice as $key => $value)
+               <tr>
+                  <td>{{ $value->numeronota }}</td>
+                  <td>{{ $value->dtaemissao }}</td>
+                  <td>{{ $value->dtavencimento }}</td>
+                  <td>{{ $value->valor }}</td>
+                  @if($value->idtipo == 1)
+                     <td>{{ $value->nomepf }}</td>
+                  @else
+                     <td>{{ $value->nomepj }}</td>
+                  @endif
+                  <td>{{ $value->statusnome }}</td>
+                  <td>
+                     <a href="#"><span class="text-primary glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+                  </td>
+                  <td>
+                     <a href="#"><span class="text-warning glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                  </td>
+                  <td>
+                     <a href="{{ url('/invoice/delete/'.$value->idnotafiscal) }}" onclick="return confirm('Você tem certeza disso?!')"><span class="text-danger glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                  </td>
+               </tr>
+            @endforeach
          </tbody>
       </table>
    </div>

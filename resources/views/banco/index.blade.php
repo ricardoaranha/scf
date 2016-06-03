@@ -35,11 +35,20 @@
          </thead>
 
          <tbody>
-            <tr>
-               @foreach($bank as $key => $value)
-
-               @endforeach
-            </tr>
+            @foreach($bank as $key => $value)
+               <tr>
+                  <td>{{$value->nome}}</td>
+                  <td>
+                     <a href="#"><span class="text-primary glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+                  </td>
+                  <td>
+                     <a href="#"><span class="text-warning glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                  </td>
+                  <td>
+                     <a href="{{ url('/bank/delete/'.$value->idbanco) }}" onclick="return confirm('Você tem certeza disso?!')"><span class="text-danger glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                  </td>
+               </tr>
+            @endforeach
          </tbody>
       </table>
    </div>

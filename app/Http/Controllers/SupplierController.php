@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Supplier;
+use App\Bank;
+use App\States;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
@@ -23,7 +25,11 @@ class SupplierController extends Controller {
 
       $title = 'Cadastrar Fornecedor';
 
-      return view('fornecedor.form', compact('title'));
+      $bank = Bank::orderBy('nome','asc')->get();
+
+      $states = States::all();
+
+      return view('fornecedor.form', compact('title','bank', 'states'));
 
    }
 
@@ -34,7 +40,7 @@ class SupplierController extends Controller {
       $rules = [];
 
       $rules = [
-         'idtipo'       => 'required',
+         'idtipo'       => 'required'
          // 'rua'          => 'required',
          // 'numero'       => 'required',
          // 'bairro'       => 'required',

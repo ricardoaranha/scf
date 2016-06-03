@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Invoice extends Model
 {
    protected $table = 'notafiscal';
-   protected $primaryKey = 'idnota';
+   protected $primaryKey = 'idnotafiscal';
    public $timestamps = false;
 
     protected $fillable = [
-     'idnota',
+     'idnotafiscal',
      'numeronota',
      'dtaemissoa',
      'dtavencimento',

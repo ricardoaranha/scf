@@ -8,6 +8,8 @@
    </div>
 </div>
 
+@include('layouts.msg')
+
 <div class="row">
    <div class="col-md-4"><a href="{{ url('/unit/register') }}" class="btn btn-success">Cadastrar</a></div>
    <div class="col-md-3 col-md-offset-5">
@@ -37,15 +39,29 @@
                <th>
                   Estado
                </th>
+               <th></th>
+               <th></th>
+               <th></th>
             </tr>
          </thead>
 
          <tbody>
-            <tr>
-               @foreach($unidade as $key => $value)
-
-               @endforeach
-            </tr>
+            @foreach($unidade as $key => $value)
+               <tr>
+                  <td>{{ $value->nome }}</td>
+                  <td>{{ $value->cidade }}</td>
+                  <td>{{ $value->uf }}</td>
+                  <td>
+                     <a href="#"><span class="text-primary glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+                  </td>
+                  <td>
+                     <a href="#"><span class="text-warning glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                  </td>
+                  <td>
+                     <a href="{{ url('/unit/delete/'.$value->idunidade) }}" onclick="return confirm('Você tem certeza disso?!')"><span class="text-danger glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                  </td>
+               </tr>
+            @endforeach
          </tbody>
       </table>
    </div>
