@@ -9,16 +9,7 @@
 </div>
 
 @include('layouts.msg')
-
-@if(count($errors) > 0)
-    <div class="alert alert-warning">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+@include('layouts.erros')
 
 <form action="{{ url('/supplier/register') }}" method="post">
    {{ csrf_field() }}

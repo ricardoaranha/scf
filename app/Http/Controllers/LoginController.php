@@ -43,6 +43,7 @@ class LoginController extends Controller
    public function logout(Request $request) {
 
       $request->session()->flush();
+      
       return redirect()->action('LoginController@index')
       ->with('class', 'success')
       ->with('msg', 'Logout realizado com sucesso!');
