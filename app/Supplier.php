@@ -21,7 +21,7 @@ class Supplier extends Model
      'numero',
      'bairro',
      'cidade',
-     'uf',
+     'idestado',
      'cep',
      'complemento',
      'telefone1',

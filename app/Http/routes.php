@@ -25,7 +25,8 @@ Route::get('/supplier', 'SupplierController@index');
 Route::get('/supplier/register', 'SupplierController@create');
 Route::post('/supplier/register', 'SupplierController@save');
 Route::get('/supplier/delete/{id}', 'SupplierController@delete');
-Route::post('/supplier/edit/{id}', 'SupplierController@edit');
+Route::get('/supplier/edit/{id}', 'SupplierController@edit');
+Route::post('/supplier/edit', 'SupplierController@update');
 
 // Invoice route
 Route::get('/invoice', 'InvoiceController@index');

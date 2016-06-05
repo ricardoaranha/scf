@@ -29,7 +29,9 @@ class SupplierController extends Controller {
 
       $states = States::all();
 
-      return view('fornecedor.form', compact('title','bank', 'states'));
+      $url = '/supplier/register';
+
+      return view('fornecedor.form', compact('title','bank', 'states', 'url'));
 
    }
 
@@ -41,22 +43,6 @@ class SupplierController extends Controller {
 
       $rules = [
          'idtipo'       => 'required'
-         // 'rua'          => 'required',
-         // 'numero'       => 'required',
-         // 'bairro'       => 'required',
-         // 'cidade'       => 'required',
-         // 'uf'           => 'required',
-         // 'cep'          => 'required',
-         // 'complemento'  => '',
-         // 'telefone1'    => '',
-         // 'telefone2'    => '',
-         // 'celular1'     => '',
-         // 'celular2'     => '',
-         // 'email'        => 'required',
-         // 'datacadastro' => 'required',
-         // 'idbanco'      => 'required',
-         // 'agencia'      => 'required',
-         // 'conta'        => 'required'
       ];
 
       if ($request['idtipo'] == 1) {
@@ -97,7 +83,7 @@ class SupplierController extends Controller {
 
          return redirect()->action('SupplierController@index')
             ->with('class', 'success')
-            ->with('msg', 'Cadastro do Fornecedor "'.$fornecedor.'" realizado com sucesso!');
+            ->with('msg', 'Fornecedor "'.$fornecedor.'" cadastrado com sucesso!');
 
       }
 
@@ -111,9 +97,64 @@ class SupplierController extends Controller {
 
       $states = States::all();
 
-      $supplier = Supplier::find($id);
+      $query = Supplier::find($id);
 
-      return view('fornecedor.form', compact('title','bank', 'states'));
+      $url = '/supplier/edit';
+
+      return view('fornecedor.form', compact('title','bank', 'states', 'query', 'url'));
+
+   }
+
+   public function update(Request $request) {
+
+      $rules = [];
+
+      $rules = [
+         'idtipo'       => 'required'
+      ];
+
+      if ($request['idtipo'] == 1) {
+
+         $rules['nomepf']     = 'required';
+         $rules['cpf']        = 'required';
+         $rules['celular1']   = 'required';
+
+         $fornecedor = $request['nomepf'];
+
+      }
+
+      if ($request['idtipo'] == 2) {
+
+         $rules['nomefantasia'] = 'required';
+         $rules['nomepj']       = 'required';
+         $rules['cnpj' ]        = 'required';
+         $rules['nomecontato']  = 'required';
+         $rules['telefone1']    = 'required';
+
+         $fornecedor = $request['nomepj'];
+
+      }
+
+      $validator = Validator::make($request->all(), $rules);
+
+      if ($validator->fails()) {
+
+         return redirect()->action('SupplierController@create')
+            ->with('class', 'danger')
+            ->with('msg', 'Erro ao tentar alterar o fornecedor, por favor atente para os erros listados abaixo:')
+            ->withErrors($validator)
+            ->withInput();
+
+      } else {
+
+         $supplier = Supplier::find($request['idfornecedor']);
+         $supplier->update($request->all());
+
+         return redirect()->action('SupplierController@index')
+            ->with('class', 'success')
+            ->with('msg', 'Fornecedor "'.$fornecedor.'" alterado com sucesso!');
+
+      }
 
    }
 
