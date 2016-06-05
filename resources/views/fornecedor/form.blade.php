@@ -74,7 +74,7 @@
 
             <div class="row">
                <div class="col-lg-6">
-                  <div class="form-grouṕ">
+                  <div class="form-group">
                      <label for="telefone1">Telefone 1:</label>
                      <input type="text" class="form-control" name="telefone1" id="telefone1" placeholder="(99) 9999-9999" ng-required="pj" />
                   </div>

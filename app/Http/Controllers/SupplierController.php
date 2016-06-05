@@ -105,9 +105,15 @@ class SupplierController extends Controller {
 
    public function edit($id) {
 
+      $title = 'Editar Fornecedor';
+
+      $bank = Bank::orderBy('nome','asc')->get();
+
+      $states = States::all();
+
       $supplier = Supplier::find($id);
 
-      return $supplier;
+      return view('fornecedor.form', compact('title','bank', 'states'));
 
    }
 

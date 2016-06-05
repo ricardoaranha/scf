@@ -49,22 +49,33 @@
 
     <!-- jQuery -->
     <script src="{{ URL::asset('js/jquery.js') }}"></script>
+    <script src="{{ URL::asset('js/jquery.maskedinput.min.js') }}"></script>
 
     <!-- AngularJS -->
     <script src="{{ URL::asset('js/angular/angular.min.js') }}"></script>
     <script src="{{ URL::asset('js/angular/angular-animate.min.js') }}"></script>
-    <script src="{{ URL::asset('js/app.js') }}">
-
-    </script>
+    <script src="{{ URL::asset('js/app.js') }}"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="{{ URL::asset('js/plugins/morris/raphael.min.js') }}"></script>
-    <script src="{{ URL::asset('js/plugins/morris/morris.min.js') }}"></script>
-    <script src="{{ URL::asset('js/plugins/morris/morris-data.js') }}"></script>
+    <!-- <script src="{{ URL::asset('js/plugins/morris/raphael.min.js') }}"></script> -->
+    <!-- <script src="{{ URL::asset('js/plugins/morris/morris.min.js') }}"></script> -->
+    <!-- <script src="{{ URL::asset('js/plugins/morris/morris-data.js') }}"></script> -->
 
 </body>
+
+<script>
+   jQuery(function($){
+       $("#telefone1").mask("(99) 9999-9999");
+       $("#telefone2").mask("(99) 9999-9999");
+       $("#celular1").mask("(99) 9-9999-9999");
+       $("#celular2").mask("(99) 9-9999-9999");
+       $("#cpf").mask("999.999.999-99");
+       $("#cnpj").mask("99.999.999/9999-99");
+       $("#cep").mask("99999-999");
+   });
+</script>
 
 </html>
