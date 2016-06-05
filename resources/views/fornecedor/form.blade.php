@@ -15,7 +15,7 @@
    {{ csrf_field() }}
    <div class="row">
       <div class="col-lg-12">
-         <div class="form-group" "@if(isset($query) && $query['idtipo'] == 2)" ng-init="pf = false; pj = true" "@else" ng-init="pf = true; pj = false" "@endif">
+         <div class="form-group" "@if(isset($query) && $query['idtipo'] == 1)" ng-init="pf = true; pj = false" "@else" ng-init="pf = false; pj = true" "@endif">
             <label>Escolha o tipo de fornecedor:</label>
             <br />
             <label class="radio-inline">

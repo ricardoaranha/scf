@@ -15,7 +15,24 @@ class SupplierController extends Controller {
 
       $title = 'Fornecedores';
 
-      $suppliers = Supplier::leftjoin('banco', 'banco.idbanco', '=', 'fornecedor.idbanco')->get();
+      $suppliers = Supplier::leftjoin('banco', 'banco.idbanco', '=', 'fornecedor.idbanco')
+         ->leftjoin('estado', 'estado.idestado', '=', 'fornecedor.idestado')
+         ->get();
+
+      return view('fornecedor.index', compact('title', 'suppliers'));
+
+   }
+
+   public function search(Request $request) {
+
+      $title = 'Fornecedores';
+
+      $suppliers = Supplier::leftjoin('banco', 'banco.idbanco', '=', 'fornecedor.idbanco')
+         ->leftjoin('estado', 'estado.idestado', '=', 'fornecedor.idestado')
+         ->where('nomepf', 'like', '%'.$request['params'].'%')
+         ->orWhere('nomepj', 'like', '%'.$request['params'].'%')
+         ->orWhere('nomefantasia', 'like', '%'.$request['params'].'%')
+         ->get();
 
       return view('fornecedor.index', compact('title', 'suppliers'));
 
@@ -37,7 +54,7 @@ class SupplierController extends Controller {
 
    public function save(Request $request) {
 
-      $request['datacadastro'] = date('Y-m-d');
+      $request['datacadastro'] = date('d/m/Y');
 
       $rules = [];
 
