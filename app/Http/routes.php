@@ -11,16 +11,15 @@
 |
 */
 
-
-// Home route
-Route::get('/', 'HomeController@index');
-
-// Login route
-Route::get('/login', 'LoginController@index');
+// Login routes
+Route::get('/', 'LoginController@index');
 Route::post('/login', 'LoginController@auth');
 Route::get('/logout', 'LoginController@logout');
 
-// Supplier route
+// Home routes
+Route::get('/home', 'HomeController@index');
+
+// Supplier routes
 Route::get('/supplier', 'SupplierController@index');
 Route::get('/supplier/register', 'SupplierController@create');
 Route::post('/supplier/register', 'SupplierController@save');
@@ -29,19 +28,19 @@ Route::get('/supplier/edit/{id}', 'SupplierController@edit');
 Route::post('/supplier/edit', 'SupplierController@update');
 Route::post('/supplier/search', 'SupplierController@search');
 
-// Invoice route
+// Invoice routes
 Route::get('/invoice', 'InvoiceController@index');
 Route::get('/invoice/register', 'InvoiceController@create');
 Route::post('/invoice/register', 'InvoiceController@save');
 Route::get('/invoice/delete/{id}', 'InvoiceController@delete');
 
-// Unit route
+// Unit routes
 Route::get('/unit', 'UnitController@index');
 Route::get('/unit/register', 'UnitController@create');
 Route::post('/unit/register', 'UnitController@save');
 Route::get('/unit/delete/{id}', 'UnitController@delete');
 
-// Bank route
+// Bank routes
 Route::get('/bank', 'BankController@index');
 Route::get('/bank/register', 'BankController@create');
 Route::post('/bank/register', 'BankController@save');

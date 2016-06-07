@@ -2,7 +2,7 @@
 <div class="collapse navbar-collapse navbar-ex1-collapse">
    <ul class="nav navbar-nav side-nav">
         <li class="active">
-            <a href="{{ url('/') }}"><i class="fa fa-fw fa-dashboard"></i> Início</a>
+            <a href="{{ url('/home') }}"><i class="fa fa-fw fa-dashboard"></i> Início</a>
         </li>
         <li>
             <a href="{{ url('/supplier') }}"><i class="fa fa-fw fa-briefcase"></i> Fornecedores</a>
@@ -11,13 +11,13 @@
             <a href="{{ url('/invoice') }}"><i class="fa fa-fw fa-table"></i> Notas Fiscais</a>
         </li>
         <li>
-            <a href="{{ url('/') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Controle de Notas</a>
+            <a href="{{ url('/home') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Controle de Notas</a>
         </li>
         <li>
-            <a href="{{ url('/') }}"><i class="fa fa-fw fa-file"></i> Emissão de DARF</a>
+            <a href="{{ url('/home') }}"><i class="fa fa-fw fa-file"></i> Emissão de DARF</a>
         </li>
         <li>
-            <a href="{{ url('/') }}"><i class="fa fa-fw fa-car"></i> Nota de Combustível</a>
+            <a href="{{ url('/home') }}"><i class="fa fa-fw fa-car"></i> Nota de Combustível</a>
         </li>
         <li>
             <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-wrench"></i> Configurações <i class="fa fa-fw fa-caret-down"></i></a>
