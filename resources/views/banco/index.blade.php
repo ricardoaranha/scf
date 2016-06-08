@@ -37,7 +37,7 @@
          <tbody>
             @foreach($bank as $key => $value)
                <tr>
-                  <td>{{$value->nome}}</td>
+                  <td>{{$value->nomebanco}}</td>
                   <td>
                      <a href="#"><span class="text-primary glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
                   </td>

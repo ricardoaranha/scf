@@ -183,9 +183,9 @@
                   <option value="0">---SELECIONE UM BANCO---</option>
                      @foreach($bank as $key => $value)
                         @if(isset($query) && $value->idbanco == $query['idbanco'])
-                        <option value="{{$value->idbanco}}" selected>{{ $value->nome }}</option>
+                        <option value="{{$value->idbanco}}" selected>{{ $value->nomebanco }}</option>
                         @else
-                        <option value="{{$value->idbanco}}">{{ $value->nome }}</option>
+                        <option value="{{$value->idbanco}}">{{ $value->nomebanco }}</option>
                         @endif
                      @endforeach
                </select>

@@ -31,7 +31,7 @@ class BankController extends Controller {
       $rules = [];
 
       $rules = [
-         'nome'       	=> 'required'
+         'nomebanco'       	=> 'required'
       ];
 
       $banco = $request['nome'];
@@ -40,7 +40,7 @@ class BankController extends Controller {
 
       if ($validator->fails()) {
 
-         return redirect()->action('UnitController@create')
+         return redirect()->action('BankController@create')
             ->with('class', 'danger')
             ->with('msg', 'Erro ao tentar cadastrar o banco, por favor atente para os erros listados abaixo:')
             ->withErrors($validator)
@@ -62,7 +62,7 @@ class BankController extends Controller {
 
       $bank = Bank::find($id);
 
-      $banco = $bank['nome'];
+      $banco = $bank['nomebanco'];
 
       $bank->delete();
 

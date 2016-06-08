@@ -26,14 +26,14 @@
 		{{ csrf_field() }}
 			<div class="form-group">
 				<label for="nome">Nome do Banco:</label>
-				<input type="text" class="form-control" name="nome" id="nome" placeholder="Nome do Banco">
+				<input type="text" class="form-control" name="nomebanco" id="nomebanco" placeholder="Nome do Banco">
 			</div>
 				<br />
 				<div class="form-group">
 					<input type="submit" class="btn btn-success" value="Cadastrar" />
 					<input type="reset" class="btn btn-danger" value="Limpar" />
 				</div>
-			
+
 		</form>
 	</div>
 </div>

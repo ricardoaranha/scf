@@ -42,7 +42,7 @@ class SupplierController extends Controller {
 
       $title = 'Cadastrar Fornecedor';
 
-      $bank = Bank::orderBy('nome','asc')->get();
+      $bank = Bank::orderBy('nomebanco','asc')->get();
 
       $states = States::all();
 
