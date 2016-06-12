@@ -7,33 +7,32 @@
       </h1>
    </div>
 </div>
-@include('layouts.msg')
 
-@if (count($errors) > 0)
-    <div class="alert alert-warning">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+@include('layouts.msg')
+@include('layouts.erros')
+
+
 <div class="row">
-	<div class="col-lg-9">
+   <div class="col-lg-2"></div>
+	<div class="col-lg-8">
 		<form action="{{ url('/invoice/register') }}" method="post">
 		{{ csrf_field() }}
 			<div class="form-group">
 				<label for="numeronota">Número da Nota</label>
 				<input type="text" class="form-control" id="numeronota" name="numeronota" placeholder="Número da Nota">
 			</div>
-			<div class="form-inline">
-				<div class="form-group">
-					<label for="dtaemissao">Data de Emissão</label>
-					<input type="date" class="form-control" id="dtaemissao" name="dtaemissao" placeholder="00/00/0000">
+			<div class="row">
+				<div class="col-lg-6">
+               <div class="form-group">
+   					<label for="dtaemissao">Data de Emissão</label>
+   					<input type="text" class="form-control" id="dtaemissao" name="dtaemissao" placeholder="00/00/0000">
+   				</div>
 				</div>
-				<div class="form-group">
-					<label for="dtavencimento">Data de Vencimento</label>
-					<input type="date" class="form-control" id="dtavencimento" name="dtavencimento" placeholder="00/00/0000">
+				<div class="col-lg-6">
+               <div class="form-group">
+   					<label for="dtavencimento">Data de Vencimento</label>
+   					<input type="text" class="form-control" id="dtavencimento" name="dtavencimento" placeholder="00/00/0000">
+   				</div>
 				</div>
 			</div>
 			<div class="form-group">
@@ -57,9 +56,9 @@
 						@if($value->idtipo == 1)
 							<option value="{{$value->idfornecedor}}">{{ $value->nomepf }}</option>
 						@else
-							<option value="{{$value->idfornecedor}}">{{ $value->nomefantasia }}</option>	
+							<option value="{{$value->idfornecedor}}">{{ $value->nomefantasia }}</option>
 						@endif
-	                	
+
 	                @endforeach
 				</select>
 			</div>
@@ -74,5 +73,6 @@
 			</div>
 		</form>
 	</div>
+   <div class="col-lg-2"></div>
 </div>
 @endsection

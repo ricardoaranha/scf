@@ -25,6 +25,35 @@
 
 <br />
 
+<div class="modal fade" id="enviarnota" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Envio de Nota Fiscal</h4>
+      </div>
+      <div class="modal-body">
+         <h3>Nota Fiscal nº <% data.numeronota %></h3>
+         <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10">
+               <form action="{{ url('/invoice/send') }}" method="post">
+                  {{ csrf_field() }}
+                  <div class="form-group">
+                     <label for="notafiscal">Selecione o arquivo: </label>
+                     <input type="file" class="form-control" id="notafiscal" name="notafiscal" />
+                     <input type="hidden" id="idnotafiscal" name="idnotafiscal" value="<% data.idnotafiscal %>">
+                  </div>
+                  <input type="submit" class="btn btn-success" value="Enviar">
+               </form>
+            </div>
+            <div class="col-xs-1"></div>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="row">
    <div class="col-md-12">
       <table class="table table-striped table-hover">
@@ -48,7 +77,6 @@
                <th>
                   Status
                </th>
-               
             </tr>
          </thead>
 
@@ -64,7 +92,13 @@
                   @else
                      <td>{{ $value->nomepj }}</td>
                   @endif
-                  <td>{{ $value->statusnome }}</td>
+                  <td>
+                     @if($value->notafiscal == null)
+                     <a href="#enviarnota" data-toggle="modal" data-target="#enviarnota" ng-model="data" ng-click="data = {{ $value }}" class="btn btn-danger"><span class="glyphicon glyphicon-file"></span> Enviar Nota</a>
+                     @else
+                     <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-file"></span> Vosualizar Nota</a>
+                     @endif
+                  </td>
                   <td>
                      <a href="#"><span class="text-primary glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
                   </td>

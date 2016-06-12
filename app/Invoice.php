@@ -12,7 +12,7 @@ class Invoice extends Model
 
     protected $fillable = [
      'numeronota',
-     'dtaemissoa',
+     'dtaemissao',
      'dtavencimento',
      'valor',
      'idstatus',
@@ -20,6 +20,7 @@ class Invoice extends Model
      'dtacadastro',
      'idfornecedor',
      'observacao',
-     'idusuario'
+     'idusuario',
+     'notafiscal'
     ];
 }

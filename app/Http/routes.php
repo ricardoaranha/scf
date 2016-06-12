@@ -33,6 +33,7 @@ Route::get('/invoice', 'InvoiceController@index');
 Route::get('/invoice/register', 'InvoiceController@create');
 Route::post('/invoice/register', 'InvoiceController@save');
 Route::get('/invoice/delete/{id}', 'InvoiceController@delete');
+Route::post('/invoice/send', 'InvoiceController@send');
 
 // Unit routes
 Route::get('/unit', 'UnitController@index');

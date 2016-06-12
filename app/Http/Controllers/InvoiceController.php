@@ -8,6 +8,7 @@ use App\Supplier;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
+use Storage;
 
 class InvoiceController extends Controller {
 
@@ -35,10 +36,6 @@ class InvoiceController extends Controller {
    }
 
    public function save(Request $request) {
-      echo $request['dtaemissao'];
-      //var_dump($request);
-      //echo "</pre>";
-      //exit;
 
       $rules = [
          'numeronota'          => 'required',
@@ -49,11 +46,9 @@ class InvoiceController extends Controller {
          'idfornecedor'        => 'required'
       ];
 
-
-
       $nota = $request['numeronota'];
 
-      $request['datacadastro'] = date('Y-m-d');
+      $request['datacadastro'] = date('d/m/Y');
       $request['idstatus'] = 1;
       $request['idusuario'] = 1;
 
@@ -63,7 +58,7 @@ class InvoiceController extends Controller {
 
          return redirect()->action('InvoiceController@create')
             ->with('class', 'danger')
-            ->with('msg', 'Erro ao tentar cadastrar a nota, por favor atente para os erros listados abaixo:')
+            ->with('msg', 'Erro ao tentar cadastrar a nota Nº "'.$nota.'", por favor atente para os erros listados abaixo:')
             ->withErrors($validator)
             ->withInput();
 
@@ -73,9 +68,15 @@ class InvoiceController extends Controller {
 
          return redirect()->action('InvoiceController@index')
             ->with('class', 'success')
-            ->with('msg', 'Cadastro da Nota "'.$nota.'" realizado com sucesso!');
+            ->with('msg', 'Cadastro da Nota Nº "'.$nota.'" realizado com sucesso!');
 
       }
+
+   }
+
+   public function send(Request $request) {
+
+
 
    }
 
