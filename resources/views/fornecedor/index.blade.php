@@ -36,7 +36,7 @@
       </div>
       <div class="modal-body">
         <ul class="list-unstyled">
-           <li><strong>Cadastrado em: </strong> <% data.datacadastro %></li>
+           <li><strong>Cadastrado em: </strong> <% data.datacadastro | date: 'dd/MM/yyyy' %></li>
            <li><strong>Nome/Razão Social: </strong><% data.nomepf %><% data.nomepj %></li>
            <li><strong>Nome Fantasia: </strong><% data.nomefantasia %> </li>
            <li><strong>CPF/CNPJ: </strong><% data.cpf %><% data.cnpj %></li>

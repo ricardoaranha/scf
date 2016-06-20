@@ -37,7 +37,7 @@
          <div class="row">
             <div class="col-xs-1"></div>
             <div class="col-xs-10">
-               <form action="{{ url('/invoice/send') }}" method="post">
+               <form action="{{ url('/invoice/send') }}" enctype="multipart/form-data" method="post">
                   {{ csrf_field() }}
                   <div class="form-group">
                      <label for="notafiscal">Selecione o arquivo: </label>
@@ -84,8 +84,8 @@
             @foreach($invoice as $key => $value)
                <tr>
                   <td>{{ $value->numeronota }}</td>
-                  <td>{{ $value->dtaemissao }}</td>
-                  <td>{{ $value->dtavencimento }}</td>
+                  <td>{{ date('d/m/Y', strtotime($value->dtaemissao)) }}</td>
+                  <td>{{ date('d/m/Y', strtotime($value->dtavencimento)) }}</td>
                   <td>{{ $value->valor }}</td>
                   @if($value->idtipo == 1)
                      <td>{{ $value->nomepf }}</td>
@@ -96,7 +96,7 @@
                      @if($value->notafiscal == null)
                      <a href="#enviarnota" data-toggle="modal" data-target="#enviarnota" ng-model="data" ng-click="data = {{ $value }}" class="btn btn-danger"><span class="glyphicon glyphicon-file"></span> Enviar Nota</a>
                      @else
-                     <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-file"></span> Vosualizar Nota</a>
+                     <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-file"></span> Visualizar Nota</a>
                      @endif
                   </td>
                   <td>

@@ -8,7 +8,6 @@ use App\Supplier;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
-use Storage;
 
 class InvoiceController extends Controller {
 
@@ -17,7 +16,8 @@ class InvoiceController extends Controller {
       $title = 'Notas Fiscais';
 
       $invoice = Invoice::leftjoin('fornecedor', 'fornecedor.idfornecedor', '=', 'notafiscal.idfornecedor')
-                        ->leftjoin('statusnota','statusnota.idstatusnota','=','notafiscal.idstatus')->get();;
+         ->leftjoin('statusnota','statusnota.idstatusnota','=','notafiscal.idstatus')
+         ->get();
 
       return view('notas.index', compact('title', 'invoice'));
 
@@ -48,7 +48,9 @@ class InvoiceController extends Controller {
 
       $nota = $request['numeronota'];
 
-      $request['datacadastro'] = date('d/m/Y');
+      $request['datacadastro'] = date('Y-m-d');
+      $dtavencimento = explode('/', $request['dtavencimento']);
+      $request['dtavencimento'] = $dtavencimento[2].'-'.$dtavencimento[1].'-'.$dtavencimento[0];
       $request['idstatus'] = 1;
       $request['idusuario'] = 1;
 
@@ -74,9 +76,20 @@ class InvoiceController extends Controller {
 
    }
 
-   public function send(Request $request) {
+   public function upload(Request $request) {
 
+      $notafiscal = $request->file('notafiscal')
+         ->getRealPath();
 
+      $notafiscal = addslashes(file_get_contents($notafiscal));
+
+      $invoice = Invoice::find($request['idnotafiscal']);
+      $invoice->notafiscal = $notafiscal;
+      $invoice->save();
+
+      return redirect()->action('InvoiceController@index')
+         ->with('class', 'success')
+         ->with('msg', 'Envio da Nota Nº "'.$invoice['numeronota'].'" realizado com sucesso!');
 
    }
 
