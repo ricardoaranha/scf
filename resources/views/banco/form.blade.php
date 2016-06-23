@@ -9,24 +9,20 @@
 </div>
 
 @include('layouts.msg')
-
-@if (count($errors) > 0)
-    <div class="alert alert-warning">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+@include('layouts.erros')
 
 <div class="row">
 	<div class="col-lg-9">
-		<form action="{{ url('/bank/register') }}" method="post">
+		<form action="{{ url($url) }}" method="post">
 		{{ csrf_field() }}
 			<div class="form-group">
+				<label for="nmero">Número:</label>
+				<input type="text" class="form-control" name="numero" id="numero" placeholder="Número" value="@if(isset($query)) {{$query['numero']}} @endif">
+				@if(isset($query))<input type="hidden" id="idbanco" name="idbanco" value="{{$query['idbanco']}}"> @endif
+			</div>
+			<div class="form-group">
 				<label for="nome">Nome do Banco:</label>
-				<input type="text" class="form-control" name="nomebanco" id="nomebanco" placeholder="Nome do Banco">
+				<input type="text" class="form-control" name="nomebanco" id="nomebanco" placeholder="Nome do Banco" value="@if(isset($query)) {{$query['nomebanco']}} @endif">
 			</div>
 				<br />
 				<div class="form-group">

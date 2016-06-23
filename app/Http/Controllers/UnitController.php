@@ -26,7 +26,9 @@ class UnitController extends Controller {
 
       $estados = States::all();
 
-      return view('unidade.form', compact('title','estados'));
+      $url = '/unit/register';
+
+      return view('unidade.form', compact('title','estados', 'url'));
 
    }
 
@@ -40,7 +42,7 @@ class UnitController extends Controller {
          'numero'       => 'required',
          'bairro'       => 'required',
          'cidade'       => 'required',
-         'uf'           => '',
+         'idestado'     => '',
          'cep'          => 'required'
       ];
 
@@ -79,6 +81,59 @@ class UnitController extends Controller {
       return redirect()->action('UnitController@index')
          ->with('class', 'success')
          ->with('msg', 'Unidade "'.$unidade.'" excluida com sucesso!');
+
+   }
+
+   public function edit($id) {
+
+      $title = 'Editar Unidade';
+
+      $estados = States::orderBy('nomeestado','asc')->get();
+
+      $query = Unit::find($id);
+
+      $url = '/unit/edit';
+
+      return view('unidade.form', compact('title', 'estados', 'query', 'url'));
+
+   }
+
+   public function update(Request $request) {
+
+      
+      $rules = [];
+
+      $rules = [
+         'nome'             => 'required',
+         'rua'              => 'required',
+         'bairro'           => 'required',
+         'numero'           => 'required',
+         'cep'              => 'required',
+         'cidade'           => 'required'
+      ];
+
+      $unidade = $request['nome'];
+
+      $validator = Validator::make($request->all(), $rules);
+
+      if ($validator->fails()) {
+
+         return redirect()->action('UnitController@edit',['id'=>$request['idunidade']])
+            ->with('class', 'danger')
+            ->with('msg', 'Erro ao tentar alterar a Unidade, por favor atente para os erros listados abaixo:')
+            ->withErrors($validator)
+            ->withInput();
+
+      } else {
+
+         $bank = Unit::find($request['idunidade']);
+         $bank->update($request->all());
+
+         return redirect()->action('UnitController@index')
+            ->with('class', 'success')
+            ->with('msg', 'Unidade "'.$unidade.'" alterado com sucesso!');
+
+      }
 
    }
 

@@ -33,6 +33,7 @@ class Supplier extends Model
      'datacadastro',
      'idbanco',
      'agencia',
-     'conta'
+     'conta',
+     'inscricaomunicipal'
     ];
 }

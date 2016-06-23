@@ -17,7 +17,7 @@ class Unit extends Model
      'numero',
      'bairro',
      'cidade',
-     'uf',
-     'cep'
+     'cep',
+     'idestado'
     ];
 }

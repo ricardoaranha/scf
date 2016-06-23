@@ -40,9 +40,14 @@ Route::get('/unit', 'UnitController@index');
 Route::get('/unit/register', 'UnitController@create');
 Route::post('/unit/register', 'UnitController@save');
 Route::get('/unit/delete/{id}', 'UnitController@delete');
+Route::get('/unit/edit/{id}', 'UnitController@edit');
+Route::post('/unit/edit', 'UnitController@update');
 
 // Bank routes
 Route::get('/bank', 'BankController@index');
 Route::get('/bank/register', 'BankController@create');
 Route::post('/bank/register', 'BankController@save');
 Route::get('/bank/delete/{id}', 'BankController@delete');
+Route::get('/bank/edit/{id}', 'BankController@edit');
+Route::post('/bank/edit', 'BankController@update');
+

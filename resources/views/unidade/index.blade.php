@@ -52,10 +52,7 @@
                   <td>{{ $value->cidade }}</td>
                   <td>{{ $value->uf }}</td>
                   <td>
-                     <a href="#"><span class="text-primary glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-                  </td>
-                  <td>
-                     <a href="#"><span class="text-warning glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                     <a href="{{ url('/unit/edit/'.$value->idunidade) }}"><span class="text-warning glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                   </td>
                   <td>
                      <a href="{{ url('/unit/delete/'.$value->idunidade) }}" onclick="return confirm('Você tem certeza disso?!')"><span class="text-danger glyphicon glyphicon-remove" aria-hidden="true"></span></a>

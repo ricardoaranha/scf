@@ -110,7 +110,7 @@ class SupplierController extends Controller {
 
       $title = 'Editar Fornecedor';
 
-      $bank = Bank::orderBy('nome','asc')->get();
+      $bank = Bank::orderBy('nomebanco','asc')->get();
 
       $states = States::all();
 
@@ -156,7 +156,7 @@ class SupplierController extends Controller {
 
       if ($validator->fails()) {
 
-         return redirect()->action('SupplierController@create')
+         return redirect()->action('SupplierController@edit',['id'=>$request['idfornecedor']])
             ->with('class', 'danger')
             ->with('msg', 'Erro ao tentar alterar o fornecedor, por favor atente para os erros listados abaixo:')
             ->withErrors($validator)

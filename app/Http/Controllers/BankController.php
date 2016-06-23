@@ -13,7 +13,7 @@ class BankController extends Controller {
 
       $title = 'Bancos';
 
-      $bank = Bank::all();
+      $bank = Bank::orderBy('nomebanco','asc')->get();
 
       return view('banco.index', compact('title', 'bank'));
 
@@ -23,7 +23,9 @@ class BankController extends Controller {
 
       $title = 'Cadastrar Banco';
 
-      return view('banco.form', compact('title'));
+      $url = '/bank/register';
+
+      return view('banco.form', compact('title', 'url'));
 
    }
    public function save(Request $request) {
@@ -31,6 +33,7 @@ class BankController extends Controller {
       $rules = [];
 
       $rules = [
+         'numero'             => 'required',
          'nomebanco'       	=> 'required'
       ];
 
@@ -69,6 +72,53 @@ class BankController extends Controller {
       return redirect()->action('BankController@index')
          ->with('class', 'success')
          ->with('msg', 'Banco "'.$banco.'" excluido com sucesso!');
+
+   }
+
+   public function edit($id) {
+
+      $title = 'Editar Banco';
+
+      $query = Bank::find($id);
+
+      $url = '/bank/edit/';
+
+      return view('banco.form', compact('title', 'query', 'url'));
+
+   }
+
+   public function update(Request $request) {
+
+      
+      $rules = [];
+
+      $rules = [
+         'numero'             => 'required',
+         'nomebanco'          => 'required'
+      ];
+
+      $banco = $request['nomebanco'];
+
+      $validator = Validator::make($request->all(), $rules);
+
+      if ($validator->fails()) {
+
+         return redirect()->action('BankController@edit',['id'=>$request['idbanco']])
+            ->with('class', 'danger')
+            ->with('msg', 'Erro ao tentar alterar o Banco, por favor atente para os erros listados abaixo:')
+            ->withErrors($validator)
+            ->withInput();
+
+      } else {
+
+         $bank = Bank::find($request['idbanco']);
+         $bank->update($request->all());
+
+         return redirect()->action('BankController@index')
+            ->with('class', 'success')
+            ->with('msg', 'Banco "'.$banco.'" alterado com sucesso!');
+
+      }
 
    }
 
