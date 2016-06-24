@@ -17,6 +17,7 @@ class Supplier extends Model
      'nomepj',
      'cpf',
      'cnpj',
+     'inscricaomunicipal',
      'rua',
      'numero',
      'bairro',
@@ -33,7 +34,6 @@ class Supplier extends Model
      'datacadastro',
      'idbanco',
      'agencia',
-     'conta',
-     'inscricaomunicipal'
+     'conta'
     ];
 }

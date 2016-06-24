@@ -66,8 +66,8 @@
                <input type="text" class="form-control" name="cnpj" id="cnpj" placeholder="99.999.999/9999-99" ng-required="pj" value="@if(isset($query)){{$query['cnpj']}}@endif" />
             </div>
             <div class="form-group">
-               <label for="cnpj">Inscrição Municipal:</label>
-               <input type="text" class="form-control" name="inscricaomunicipal" id="inscricaomunicipal"  ng-required="pj" value="@if(isset($query)){{$query['inscricaomunicipal']}}@endif" />
+               <label for="inscricaomunicipal">Inscrição Municipal:</label>
+               <input type="text" class="form-control" name="inscricaomunicipal" id="inscricaomunicipal" placeholder="999999999"  ng-required="pj" value="@if(isset($query)){{$query['inscricaomunicipal']}}@endif" />
             </div>
          </fieldset>
 

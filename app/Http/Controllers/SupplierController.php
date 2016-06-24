@@ -54,7 +54,7 @@ class SupplierController extends Controller {
 
    public function save(Request $request) {
 
-      $request['datacadastro'] = date('d/m/Y');
+      $request['datacadastro'] = date('Y-m-d');
 
       $rules = [];
 

@@ -9,6 +9,7 @@
 </div>
 
 @include('layouts.msg')
+@include('layouts.erros')
 
 <div class="row">
    <div class="col-md-4"><a href="{{ url('/invoice/register') }}" class="btn btn-success">Cadastrar</a></div>
@@ -25,7 +26,7 @@
 
 <br />
 
-<div class="modal fade" id="enviarnota" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="send" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -94,9 +95,9 @@
                   @endif
                   <td>
                      @if($value->notafiscal == null)
-                     <a href="#enviarnota" data-toggle="modal" data-target="#enviarnota" ng-model="data" ng-click="data = {{ $value }}" class="btn btn-danger"><span class="glyphicon glyphicon-file"></span> Enviar Nota</a>
+                     <a href="#send" data-toggle="modal" data-target="#send" ng-model="data" ng-click="data = {{ $value }}" class="btn btn-danger"><span class="glyphicon glyphicon-file"></span> Enviar Nota</a>
                      @else
-                     <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-file"></span> Visualizar Nota</a>
+                     <a href="{{ url('/invoice/show/'.$value->idnotafiscal.'/'.$value->numeronota) }}" target="_blank" class="btn btn-success"><span class="glyphicon glyphicon-file"></span> Visualizar Nota</a>
                      @endif
                   </td>
                   <td>
