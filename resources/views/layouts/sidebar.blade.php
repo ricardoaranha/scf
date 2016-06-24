@@ -33,5 +33,8 @@
         <li>
             <a href="{{ url('/user') }}"><i class="fa fa-fw fa-user"></i> Usuários</a>
         </li>
+        <li>
+            <a href="{{ url('/password/'.session()->get('user')['userid']) }}"><i class="fa fa-fw fa-refresh"></i> Trocar Senha</a>
+        </li>
    </ul>
 </div>
