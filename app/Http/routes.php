@@ -34,6 +34,7 @@ Route::get('/invoice/register', 'InvoiceController@create');
 Route::post('/invoice/register', 'InvoiceController@save');
 Route::get('/invoice/delete/{id}', 'InvoiceController@delete');
 Route::post('/invoice/send', 'InvoiceController@upload');
+Route::get('/invoice/show/{id}/{name}', 'InvoiceController@show');
 
 // Unit routes
 Route::get('/unit', 'UnitController@index');
@@ -50,4 +51,3 @@ Route::post('/bank/register', 'BankController@save');
 Route::get('/bank/delete/{id}', 'BankController@delete');
 Route::get('/bank/edit/{id}', 'BankController@edit');
 Route::post('/bank/edit', 'BankController@update');
-

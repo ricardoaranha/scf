@@ -8,6 +8,7 @@ use App\Supplier;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
+use Response;
 
 class InvoiceController extends Controller {
 
@@ -49,8 +50,13 @@ class InvoiceController extends Controller {
       $nota = $request['numeronota'];
 
       $request['datacadastro'] = date('Y-m-d');
+
       $dtavencimento = explode('/', $request['dtavencimento']);
       $request['dtavencimento'] = $dtavencimento[2].'-'.$dtavencimento[1].'-'.$dtavencimento[0];
+
+      $dtaemissao = explode('/', $request['dtaemissao']);
+      $request['dtaemissao'] = $dtaemissao[2].'-'.$dtaemissao[1].'-'.$dtaemissao[0];
+
       $request['idstatus'] = 1;
       $request['idusuario'] = 1;
 
@@ -78,18 +84,43 @@ class InvoiceController extends Controller {
 
    public function upload(Request $request) {
 
-      $notafiscal = $request->file('notafiscal')
-         ->getRealPath();
+      $notafiscal = $request->file('notafiscal')->getRealPath();
 
-      $notafiscal = addslashes(file_get_contents($notafiscal));
+      $rules = [
+         'notafiscal' => 'mimes:pdf|required'
+      ];
 
-      $invoice = Invoice::find($request['idnotafiscal']);
-      $invoice->notafiscal = $notafiscal;
-      $invoice->save();
+      $notafiscal = file_get_contents($notafiscal);
 
-      return redirect()->action('InvoiceController@index')
-         ->with('class', 'success')
-         ->with('msg', 'Envio da Nota Nº "'.$invoice['numeronota'].'" realizado com sucesso!');
+      $validator = Validator::make($request->all(), $rules);
+
+      if ($validator->fails()) {
+
+         return redirect()->action('SupplierController@create')
+            ->with('class', 'danger')
+            ->with('msg', 'Erro ao tentar enviar Nota nº "'.$invoice['numeronota'].'", por favor tente novemente.')
+            ->withErrors($validator)
+            ->withInput();
+
+      } else {
+
+         $invoice = Invoice::find($request['idnotafiscal']);
+         $invoice->notafiscal = $notafiscal;
+         $invoice->save();
+
+         return redirect()->action('InvoiceController@index')
+            ->with('class', 'success')
+            ->with('msg', 'Envio da Nota nº "'.$invoice['numeronota'].'" realizado com sucesso!');
+
+      }
+
+   }
+
+   public function show($id) {
+
+      $invoice = Invoice::find($id);
+
+      return Response::make($invoice['notafiscal'], 200, array('content-type'=>'application/pdf'));
 
    }
 
