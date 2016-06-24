@@ -40,6 +40,7 @@
            <li><strong>Nome/Razão Social: </strong><% data.nomepf %><% data.nomepj %></li>
            <li><strong>Nome Fantasia: </strong><% data.nomefantasia %> </li>
            <li><strong>CPF/CNPJ: </strong><% data.cpf %><% data.cnpj %></li>
+           <li><strong>Inscrição Municipal: </strong><% data.inscricaomunicipal %></li>
            <li><strong>Enereço: </strong><% data.rua %>, <% data.numero %>, <% data.bairro %></li>
            <li><strong>Complemento: </strong><% data.complemento %></li>
            <li><strong>Cidade/Estado: </strong><% data.cidade %> - <% data.uf %></li>

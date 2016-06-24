@@ -31,7 +31,7 @@
             </ul>
         </li>
         <li>
-            <a href="blank-page.html"><i class="fa fa-fw fa-user"></i> Usuários</a>
+            <a href="{{ url('/user') }}"><i class="fa fa-fw fa-user"></i> Usuários</a>
         </li>
    </ul>
 </div>

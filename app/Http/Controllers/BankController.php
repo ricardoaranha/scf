@@ -55,7 +55,7 @@ class BankController extends Controller {
 
          return redirect()->action('BankController@index')
             ->with('class', 'success')
-            ->with('msg', 'Cadastro ddo Banco "'.$banco.'" realizado com sucesso!');
+            ->with('msg', 'Cadastro do Banco "'.$banco.'" realizado com sucesso!');
 
       }
 
