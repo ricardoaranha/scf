@@ -26,6 +26,32 @@
 
 <br />
 
+<div class="modal fade" id="details" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Detalhes</h4>
+      </div>
+      <div class="modal-body">
+        <ul class="list-unstyled">
+           <li><strong>Cadastrada em: </strong> <% data.dtacadastro | date: 'dd/MM/yyyy' %></li>
+           <li><strong>Numero: </strong><% data.numeronota %></li>
+           <li><strong>Data de Emissão: </strong><% data.dtaemissao %></li>
+           <li><strong>Data de Vencimento: </strong><% data.dtavencimento %></li>
+           <li><strong>Valor: </strong>R$ <% data.valor %></li>
+           <li><strong>Fornecedor: </strong><% data.nomepf %><% data.nomepj %></li>
+           <li><strong>Unidade: </strong><% data.nome %></li>
+           <li><strong>Observações: </strong><% data.observacao %></li>
+        </ul>
+        <div class="modal-footer" ng-if="data.bolnotafiscal == 1">
+           <a href="{{ url('/invoice/show') }}/<% data.idnotafiscal %>/<% data.numeronota %>" target="_blank" class="btn btn-success"><span class="glyphicon glyphicon-file"></span> Visualizar Nota</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal fade" id="send" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -42,7 +68,8 @@
                   {{ csrf_field() }}
                   <div class="form-group">
                      <label for="notafiscal">Selecione o arquivo: </label>
-                     <input type="file" class="form-control" id="notafiscal" name="notafiscal" />
+                     <input type="file" class="form-control" id="notafiscal" name="notafiscal" aria-describedby="helpBlock" />
+                     <span id="helpBlock" class="help-block">* Somente arquivos em .pdf</span>
                      <input type="hidden" id="idnotafiscal" name="idnotafiscal" value="<% data.idnotafiscal %>">
                   </div>
                   <input type="submit" class="btn btn-success" value="Enviar">
@@ -87,24 +114,24 @@
                   <td>{{ $value->numeronota }}</td>
                   <td>{{ date('d/m/Y', strtotime($value->dtaemissao)) }}</td>
                   <td>{{ date('d/m/Y', strtotime($value->dtavencimento)) }}</td>
-                  <td>{{ $value->valor }}</td>
+                  <td>R$ {{ $value->valor }}</td>
                   @if($value->idtipo == 1)
                      <td>{{ $value->nomepf }}</td>
                   @else
                      <td>{{ $value->nomepj }}</td>
                   @endif
                   <td>
-                     @if($value->notafiscal == null)
+                     @if($value->bolnotafiscal == 0)
                      <a href="#send" data-toggle="modal" data-target="#send" ng-model="data" ng-click="data = {{ $value }}" class="btn btn-danger"><span class="glyphicon glyphicon-file"></span> Enviar Nota</a>
                      @else
                      <a href="{{ url('/invoice/show/'.$value->idnotafiscal.'/'.$value->numeronota) }}" target="_blank" class="btn btn-success"><span class="glyphicon glyphicon-file"></span> Visualizar Nota</a>
                      @endif
                   </td>
                   <td>
-                     <a href="#"><span class="text-primary glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+                     <a href="#details" data-toggle="modal" data-target="#details" ng-click="data = {{ $value }}"><span class="text-primary glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
                   </td>
                   <td>
-                     <a href="#"><span class="text-warning glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                     <a href="{{ url('invoice/edit/'.$value->idnotafiscal) }}"><span class="text-warning glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                   </td>
                   <td>
                      <a href="{{ url('/invoice/delete/'.$value->idnotafiscal) }}" onclick="return confirm('Você tem certeza disso?!')"><span class="text-danger glyphicon glyphicon-remove" aria-hidden="true"></span></a>

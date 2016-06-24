@@ -156,7 +156,7 @@ class SupplierController extends Controller {
 
       if ($validator->fails()) {
 
-         return redirect()->action('SupplierController@edit',['id'=>$request['idfornecedor']])
+         return redirect()->action('SupplierController@edit', ['id'=>$request['idfornecedor']])
             ->with('class', 'danger')
             ->with('msg', 'Erro ao tentar alterar o fornecedor, por favor atente para os erros listados abaixo:')
             ->withErrors($validator)

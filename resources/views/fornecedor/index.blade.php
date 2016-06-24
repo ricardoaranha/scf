@@ -36,9 +36,9 @@
       </div>
       <div class="modal-body">
         <ul class="list-unstyled">
-           <li><strong>Cadastrado em: </strong> <% data.datacadastro | date: 'dd/MM/yyyy' %></li>
+           <li><strong>Cadastrado em: </strong><% data.datacadastro | date: 'dd/MM/yyyy' %></li>
            <li><strong>Nome/Razão Social: </strong><% data.nomepf %><% data.nomepj %></li>
-           <li><strong>Nome Fantasia: </strong><% data.nomefantasia %> </li>
+           <li><strong>Nome Fantasia: </strong><% data.nomefantasia %></li>
            <li><strong>CPF/CNPJ: </strong><% data.cpf %><% data.cnpj %></li>
            <li><strong>Inscrição Municipal: </strong><% data.inscricaomunicipal %></li>
            <li><strong>Enereço: </strong><% data.rua %>, <% data.numero %>, <% data.bairro %></li>

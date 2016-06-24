@@ -15,37 +15,44 @@
 <div class="row">
    <div class="col-lg-2"></div>
 	<div class="col-lg-8">
-		<form action="{{ url('/invoice/register') }}" method="post">
+		<form action="{{ url($url) }}" enctype="multipart/form-data" method="post">
 		{{ csrf_field() }}
 			<div class="form-group">
 				<label for="numeronota">Número da Nota</label>
-				<input type="text" class="form-control" id="numeronota" name="numeronota" placeholder="Número da Nota">
+				<input type="text" class="form-control" id="numeronota" name="numeronota" placeholder="Número da Nota" value="@if(isset($query)){{ $query['numeronota'] }}@endif" />
 			</div>
+         @if(isset($query))
+         <input type="hidden" name="idnotafiscal" id="idnotafiscal" value="{{$query['idnotafiscal']}}" />
+         @endif
 			<div class="row">
 				<div class="col-lg-6">
                <div class="form-group">
    					<label for="dtaemissao">Data de Emissão</label>
-   					<input type="text" class="form-control" id="dtaemissao" name="dtaemissao" placeholder="00/00/0000">
+   					<input type="text" class="form-control" id="dtaemissao" name="dtaemissao" placeholder="00/00/0000" value="@if(isset($query)){{ date('d/m/Y', strtotime($query['dtaemissao'])) }}@endif" />
    				</div>
 				</div>
 				<div class="col-lg-6">
                <div class="form-group">
    					<label for="dtavencimento">Data de Vencimento</label>
-   					<input type="text" class="form-control" id="dtavencimento" name="dtavencimento" placeholder="00/00/0000">
+   					<input type="text" class="form-control" id="dtavencimento" name="dtavencimento" placeholder="00/00/0000"value="@if(isset($query)){{ date('d/m/Y', strtotime($query['dtavencimento'])) }}@endif" />
    				</div>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="valor">Valor</label>
-				<input type="text" class="form-control" id="valor" name="valor" placeholder="Valor">
+				<input type="text" class="form-control" id="valor" name="valor" placeholder="Valor" value="@if(isset($query)){{ $query['valor'] }}@endif" />
 			</div>
 			<div class="form-group">
 				<label for="unidade">Unidade</label>
 				<select class="form-control" id="unidade" name="idunidade">
 					<option value="0">--- Unidades ---</option>
 					@foreach($unidade as $key => $value)
-	                	<option value="{{$value->idunidade}}">{{ $value->nome }}</option>
-	                @endforeach
+                	@if(isset($query) && $query['idunidade'] == $value->idunidade)
+                  <option value="{{$value->idunidade}}" selected>{{ $value->nome }}</option>
+                  @else
+                  <option value="{{$value->idunidade}}">{{ $value->nome }}</option>
+                  @endif
+                @endforeach
 				</select>
 			</div>
 			<div class="form-group">
@@ -54,22 +61,42 @@
 					<option value="0">--- Fornecedores ---</option>
 					@foreach($fornecedor as $key => $value)
 						@if($value->idtipo == 1)
-							<option value="{{$value->idfornecedor}}">{{ $value->nomepf }}</option>
+                     @if(isset($query) && $query['idfornecedor'] == $value->idfornecedor)
+							   <option value="{{$value->idfornecedor}}" selected>{{ $value->nomepf }}</option>
+                     @else
+                        <option value="{{$value->idfornecedor}}">{{ $value->nomepf }}</option>
+                     @endif
 						@else
-							<option value="{{$value->idfornecedor}}">{{ $value->nomefantasia }}</option>
+                     @if(isset($query) && $query['idfornecedor'] == $value->idfornecedor)
+                        <option value="{{$value->idfornecedor}}" selected>{{ $value->nomefantasia }}</option>
+                     @else
+                        <option value="{{$value->idfornecedor}}">{{ $value->nomefantasia }}</option>
+                     @endif
 						@endif
-
-	                @endforeach
+                @endforeach
 				</select>
 			</div>
 			<div class="form-group">
 				<label for="observacao">Observação</label>
-				<textarea class="form-control" rows="3" name="observacao"></textarea>
+				<textarea class="form-control" rows="3" id="observacao" name="observacao">@if(isset($query)){{ $query['observacao'] }}@endif</textarea>
 			</div>
-			<br>
+
+         @if(isset($query) && $query['bolnotafiscal'] == 1)
+            <div class="form-group">
+               <label for="notafiscal">Alterar Nota Fiscal:</label>
+               <input type="file" class="form-control" id="notafiscal" name="notafiscal" aria-describedby="helpBlock" />
+               <span id="helpBlock" class="help-block">* Somente arquivos em .pdf</span>
+            </div>
+         @endif
+
+			<br />
 			<div class="form-group">
-				<input type="submit" class="btn btn-success" value="Cadastrar" />
-				<input type="reset" class="btn btn-danger" value="Limpar" />
+            <input type="submit" class="btn btn-success" value="@if(isset($query)) Salvar @else Cadastrar @endif" />
+            @if(isset($query))
+            <a href="{{ url('/invoice') }}" class="btn btn-danger">Cancelar</a>
+            @else
+            <input type="reset" class="btn btn-danger" value="Limpar" />
+            @endif
 			</div>
 		</form>
 	</div>

@@ -35,6 +35,8 @@ Route::post('/invoice/register', 'InvoiceController@save');
 Route::get('/invoice/delete/{id}', 'InvoiceController@delete');
 Route::post('/invoice/send', 'InvoiceController@upload');
 Route::get('/invoice/show/{id}/{name}', 'InvoiceController@show');
+Route::get('/invoice/edit/{id}', 'InvoiceController@edit');
+Route::post('/invoice/edit', 'InvoiceController@update');
 
 // Unit routes
 Route::get('/unit', 'UnitController@index');
