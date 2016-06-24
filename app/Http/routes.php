@@ -62,10 +62,7 @@ Route::get('/user/delete/{id}', 'UserController@delete');
 Route::get('/user/edit/{id}', 'UserController@edit');
 Route::post('/user/edit', 'UserController@update');
 Route::get('/user/redefinirsenha/{id}/{login}', 'UserController@redefinirsenha');
-<<<<<<< HEAD
-=======
 
 // Password routes
 Route::get('/password/{id}', 'PassController@index');
 Route::post('/password/edit', 'PassController@update');
->>>>>>> 8d1caa8ec013d259bc5ba6428e73ac72cc450fb3
