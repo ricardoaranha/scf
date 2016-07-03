@@ -17,9 +17,24 @@ class InvoiceController extends Controller {
       $title = 'Notas Fiscais';
 
       $invoice = Invoice::select('idnotafiscal', 'numeronota', 'dtaemissao', 'dtavencimento', 'valor', 'idstatus', 'dtacadastro', 'observacao', 'bolnotafiscal', 'idtipo', 'nomepf', 'nomepj', 'nome')
-         ->leftjoin('fornecedor', 'fornecedor.idfornecedor', '=', 'notafiscal.idfornecedor')
-         ->leftjoin('statusnota','statusnota.idstatusnota','=','notafiscal.idstatus')
-         ->leftjoin('unidade', 'unidade.idunidade', '=', 'notafiscal.idunidade')
+         ->join('fornecedor', 'fornecedor.idfornecedor', '=', 'notafiscal.idfornecedor')
+         ->join('statusnota','statusnota.idstatusnota','=','notafiscal.idstatus')
+         ->join('unidade', 'unidade.idunidade', '=', 'notafiscal.idunidade')
+         ->get();
+
+      return view('notas.index', compact('title', 'invoice'));
+
+   }
+
+   public function search(Request $request) {
+
+      $title = 'Notas Fiscais';
+
+      $invoice = Invoice::select('idnotafiscal', 'numeronota', 'dtaemissao', 'dtavencimento', 'valor', 'idstatus', 'dtacadastro', 'observacao', 'bolnotafiscal', 'idtipo', 'nomepf', 'nomepj', 'nome')
+         ->join('fornecedor', 'fornecedor.idfornecedor', '=', 'notafiscal.idfornecedor')
+         ->join('statusnota','statusnota.idstatusnota','=','notafiscal.idstatus')
+         ->join('unidade', 'unidade.idunidade', '=', 'notafiscal.idunidade')
+         ->where('numeronota', '=', $request['numeronota'])
          ->get();
 
       return view('notas.index', compact('title', 'invoice'));

@@ -32,6 +32,7 @@ Route::post('/supplier/search', 'SupplierController@search');
 Route::get('/invoice', 'InvoiceController@index');
 Route::get('/invoice/register', 'InvoiceController@create');
 Route::post('/invoice/register', 'InvoiceController@save');
+Route::post('/invoice/search', 'InvoiceController@search');
 Route::get('/invoice/delete/{id}', 'InvoiceController@delete');
 Route::post('/invoice/send', 'InvoiceController@upload');
 Route::get('/invoice/show/{id}/{name}', 'InvoiceController@show');
