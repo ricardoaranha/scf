@@ -20,6 +20,14 @@
             <a href="{{ url('/home') }}"><i class="fa fa-fw fa-car"></i> Nota de Combustível</a>
         </li>
         <li>
+           <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-list"></i> Relatórios <i class="fa fa-fw fa-caret-down"></i></a>
+           <ul id="demo" class="collapse">
+               <li>
+                   <a href="{{ url('/invoice/report') }}">Notas Fiscais</a>
+               </li>
+           </ul>
+        </li>
+        <li>
             <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-wrench"></i> Configurações <i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="demo" class="collapse">
                 <li>

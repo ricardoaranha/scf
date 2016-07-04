@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
 // Login routes
 Route::get('/', 'LoginController@index');
 Route::post('/login', 'LoginController@auth');
@@ -38,6 +27,8 @@ Route::post('/invoice/send', 'InvoiceController@upload');
 Route::get('/invoice/show/{id}/{name}', 'InvoiceController@show');
 Route::get('/invoice/edit/{id}', 'InvoiceController@edit');
 Route::post('/invoice/edit', 'InvoiceController@update');
+Route::match(array('GET', 'POST'), '/invoice/report', 'InvoiceController@report');
+Route::get('/invoice/download', 'InvoiceController@download');
 
 // Unit routes
 Route::get('/unit', 'UnitController@index');

@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
 use Response;
+use Input;
+use PDF;
 
 class InvoiceController extends Controller {
 
@@ -17,9 +19,9 @@ class InvoiceController extends Controller {
       $title = 'Notas Fiscais';
 
       $invoice = Invoice::select('idnotafiscal', 'numeronota', 'dtaemissao', 'dtavencimento', 'valor', 'idstatus', 'dtacadastro', 'observacao', 'bolnotafiscal', 'idtipo', 'nomepf', 'nomepj', 'nome')
-         ->join('fornecedor', 'fornecedor.idfornecedor', '=', 'notafiscal.idfornecedor')
-         ->join('statusnota','statusnota.idstatusnota','=','notafiscal.idstatus')
-         ->join('unidade', 'unidade.idunidade', '=', 'notafiscal.idunidade')
+         ->leftJoin('fornecedor', 'fornecedor.idfornecedor', '=', 'notafiscal.idfornecedor')
+         ->leftJoin('statusnota','statusnota.idstatusnota','=','notafiscal.idstatus')
+         ->leftJoin('unidade', 'unidade.idunidade', '=', 'notafiscal.idunidade')
          ->get();
 
       return view('notas.index', compact('title', 'invoice'));
@@ -229,6 +231,44 @@ class InvoiceController extends Controller {
       return redirect()->action('InvoiceController@index')
          ->with('class', 'success')
          ->with('msg', 'Unidade "'.$nota.'" excluida com sucesso!');
+
+   }
+
+   public function report(Request $request) {
+
+      $title = 'Relatório de Notas Fiscáis';
+
+      $invoice = null;
+
+      if(isset($request['dtaInicio'])) {
+
+         $invoice = Invoice::select('idnotafiscal', 'numeronota', 'dtaemissao', 'dtavencimento', 'valor', 'idstatus', 'dtacadastro', 'observacao', 'bolnotafiscal', 'idtipo', 'nomepf', 'nomepj', 'nome')
+            ->leftJoin('fornecedor', 'fornecedor.idfornecedor', '=', 'notafiscal.idfornecedor')
+            ->leftJoin('statusnota','statusnota.idstatusnota','=','notafiscal.idstatus')
+            ->leftJoin('unidade', 'unidade.idunidade', '=', 'notafiscal.idunidade')
+            ->whereBetween('dtacadastro', [$request['dtaInicio'], $request['dtaFim']])
+            ->get();
+
+         session()->put('invoice', $invoice);
+         session()->put('request', ['dtaInicio' => $request['dtaInicio'], 'dtaFim' => $request['dtaFim']]);
+
+      }
+
+      return view('notas.report', compact('title', 'invoice', 'request'));
+
+   }
+
+   public function download() {
+
+      $title = 'Relatório de Notas Fiscáis';
+
+      $invoice = session()->get('invoice');
+
+      $request = session()->get('request');
+
+		$pdf = PDF::loadView('notas.download', compact('title', 'invoice', 'request'));
+
+		return $pdf->download('relatorio_notas_fiscais'.date('Y-m-d_H-i').'.pdf');
 
    }
 
