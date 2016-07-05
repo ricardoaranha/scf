@@ -40,25 +40,29 @@
 
 <div class="row">
    <div class="col-lg-12">
+      <a href="{{ url('/invoice/report') }}" class="btn btn-primary">Nova busca</a>
       <a href="{{ url('/invoice/download') }}" class="btn btn-danger"><span class="glyphicon glyphicon-save-file"></span> Baixar PDF</a>
-
-      <h4><strong>Período: {{ date('d/m/Y', strtotime($request['dtaInicio'])) }} - {{ date('d/m/Y', strtotime($request['dtaFim'])) }}</strong></h4>
-
-      <br />
-      
-      <ul class="list-unstyled">
-         @foreach($invoice as $row)
-         <li><strong>Numero:</strong> {{ $row->numeronota }}</li>
-         <li><strong>Fornecedor:</strong> {{ $row->nome }}</li>
-         <li><strong>Data de emissão:</strong> {{ date('d/m/y', strtotime($row->dtaemissao)) }}</li>
-         <li><strong>Valor:</strong> R$ {{ $row->valor }}</li>
-         <li><strong>Data de vencimento:</strong> {{ date('d/m/Y', strtotime('dtavencimento')) }}</li>
-         <br />
-         @endforeach
-      </ul>
+      <br /><br />
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <strong>Período: {{ date('d/m/Y', strtotime($request['dtaInicio'])) }} - {{ date('d/m/Y', strtotime($request['dtaFim'])) }}</strong>
+         </div>
+         <div class="panel-body">
+            @foreach($invoice as $row)
+            <ul class="list-unstyled">
+               <li><strong>Numero:</strong> {{ $row->numeronota }}</li>
+               <li><strong>Fornecedor:</strong> {{ $row->nome }}</li>
+               <li><strong>Data de emissão:</strong> {{ date('d/m/Y', strtotime($row->dtaemissao)) }}</li>
+               <li><strong>Valor:</strong> R$ {{ $row->valor }}</li>
+               <li><strong>Data de vencimento:</strong> {{ date('d/m/Y', strtotime('dtavencimento')) }}</li>
+            </ul>
+            <hr />
+            @endforeach
+         </div>
+      </div>
 
       <p align="center">
-         Gerado em: {{ date('d/m/y') }}
+         Gerado em: {{ date('d/m/Y') }}
       </p>
    </div>
 </div>
