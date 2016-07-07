@@ -6,7 +6,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
    </button>
-   <a class="navbar-brand" href="index.html">SCF</a>
+   <a class="navbar-brand" href="{{ url('/home') }}"><strong>SCF</strong></a>
 </div>
 <!-- Top Menu Items -->
 <ul class="nav navbar-right top-nav">
