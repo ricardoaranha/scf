@@ -23,7 +23,7 @@ class UserController extends Controller {
 
    public function create() {
 
-      $title = 'Cadastrar Usuário';
+      $title = 'Cadastrar Usuários';
 
       $niveluser = Niveluser::orderBy('nomeniveluser', 'asc')->get();
 
