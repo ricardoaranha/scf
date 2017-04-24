@@ -58,3 +58,9 @@ Route::get('/user/redefinirsenha/{id}/{login}', 'UserController@redefinirsenha')
 // Password routes
 Route::get('/password/{id}', 'PassController@index');
 Route::post('/password/edit', 'PassController@update');
+
+
+Route::get('laravel-version', function() {
+    $laravel = app();
+    return "Your Laravel version is ".$laravel::VERSION;
+});

@@ -240,7 +240,7 @@ class InvoiceController extends Controller {
 
    public function report(Request $request) {
 
-      $title = 'Relatório de Notas Fiscáis';
+      $title = 'Relatório de Notas Fiscais';
 
       $invoice = null;
 
@@ -282,7 +282,7 @@ class InvoiceController extends Controller {
 
    public function download() {
 
-      $title = 'Relatório de Notas Fiscáis';
+      $title = 'Relatório de Notas Fiscais';
 
       $invoice = session()->get('invoice');
 
