@@ -77,6 +77,7 @@
        $("#cep").mask("99999-999");
        $("#dtaemissao, #dtavencimento").mask("99/99/9999");
        $("#inscricaomunicipal").mask("999999999");
+       $("#inscricaoestadual").mask("999999999");
    });
 </script>
 

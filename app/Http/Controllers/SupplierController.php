@@ -16,7 +16,7 @@ class SupplierController extends Controller {
       $title = 'Fornecedores';
 
       $suppliers = Supplier::leftjoin('banco', 'banco.idbanco', '=', 'fornecedor.idbanco')
-         ->leftjoin('estado', 'estado.idestado', '=', 'fornecedor.idestado')
+         ->leftjoin('estado', 'estado.sigla', '=', 'fornecedor.idestado')
          ->get();
 
       return view('fornecedor.index', compact('title', 'suppliers'));
@@ -28,7 +28,7 @@ class SupplierController extends Controller {
       $title = 'Fornecedores';
 
       $suppliers = Supplier::leftjoin('banco', 'banco.idbanco', '=', 'fornecedor.idbanco')
-         ->leftjoin('estado', 'estado.idestado', '=', 'fornecedor.idestado')
+         ->leftjoin('estado', 'estado.sigla', '=', 'fornecedor.idestado')
          ->where('nomepf', 'like', '%'.$request['params'].'%')
          ->orWhere('nomepj', 'like', '%'.$request['params'].'%')
          ->orWhere('nomefantasia', 'like', '%'.$request['params'].'%')

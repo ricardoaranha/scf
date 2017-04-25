@@ -65,9 +65,15 @@
                <label for="cnpj">CNPJ:</label>
                <input type="text" class="form-control" name="cnpj" id="cnpj" placeholder="99.999.999/9999-99" ng-required="pj" value="@if(isset($query)){{ $query['cnpj'] }}@endif" />
             </div>
-            <div class="form-group">
-               <label for="inscricaomunicipal">Inscrição Municipal:</label>
-               <input type="text" class="form-control" name="inscricaomunicipal" id="inscricaomunicipal" placeholder="999999999"  ng-required="pj" value="@if(isset($query)){{ $query['inscricaomunicipal'] }}@endif" />
+            <div class="row">
+               <div class="col-lg-6">
+                  <label for="inscricaomunicipal">Inscrição Municipal:</label>
+                  <input type="text" class="form-control" name="inscricaomunicipal" id="inscricaomunicipal" placeholder="999999999"  ng-required="pj" value="@if(isset($query)){{ $query['inscricaomunicipal'] }}@endif" />
+               </div>
+               <div class="col-lg-6">
+                  <label for="inscricaoestadual">Inscrição Estadual:</label>
+                  <input type="text" class="form-control" name="inscricaoestadual" id="inscricaoestadual" placeholder="999999999"  ng-required="pj" value="@if(isset($query)){{ $query['inscricaoestadual'] }}@endif" />
+               </div>
             </div>
             <div class="form-group">
                <label for="email">Email:</label>
