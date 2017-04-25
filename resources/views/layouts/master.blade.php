@@ -59,6 +59,8 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
 
+    <!-- CEP -->
+    <script src="{{ URL::asset('js/cep.js') }}"></script>
     <!-- Morris Charts JavaScript -->
     <!-- <script src="{{ URL::asset('js/plugins/morris/raphael.min.js') }}"></script> -->
     <!-- <script src="{{ URL::asset('js/plugins/morris/morris.min.js') }}"></script> -->

@@ -69,6 +69,10 @@
                <label for="inscricaomunicipal">Inscrição Municipal:</label>
                <input type="text" class="form-control" name="inscricaomunicipal" id="inscricaomunicipal" placeholder="999999999"  ng-required="pj" value="@if(isset($query)){{ $query['inscricaomunicipal'] }}@endif" />
             </div>
+            <div class="form-group">
+               <label for="email">Email:</label>
+               <input type="email" class="form-control" name="email" id="email" placeholder="email@email.com" value="@if(isset($query)){{ $query['email'] }}@endif" />
+            </div>
          </fieldset>
 
          <fieldset>
@@ -82,32 +86,25 @@
             <div class="row">
                <div class="col-lg-6">
                   <div class="form-group">
-                     <label for="telefone1">Telefone 1:</label>
+                     <label for="telefone1">Telefone:</label>
                      <input type="text" class="form-control" name="telefone1" id="telefone1" placeholder="(99) 9999-9999" ng-required="pj" value="@if(isset($query)){{ $query['telefone1'] }}@endif" />
                   </div>
                </div>
-
+               <div class="col-lg-6">
+                  <div class="form-grouṕ">
+                     <label for="celular1">Celular:</label>
+                     <input type="text" class="form-control" name="celular1" id="celular1" placeholder="(99) 9-9999-9999" ng-required="pf" value="@if(isset($query)){{ $query['celular1'] }}@endif" />
+                  </div>
+               </div>
+            </div>
+            <!--  
+            <div class="row">  
                <div class="col-lg-6">
                   <div class="form-group">
                      <label for="telefone2">Telefone 2:</label>
                      <input type="text" class="form-control" name="telefone2" id="telefone2" placeholder="(99) 9999-9999" value="@if(isset($query)){{ $query['telefone2'] }}@endif" />
                   </div>
                </div>
-            </div>
-
-            <div class="form-group">
-               <label for="email">Email:</label>
-               <input type="email" class="form-control" name="email" id="email" placeholder="email@email.com" value="@if(isset($query)){{ $query['email'] }}@endif" />
-            </div>
-
-            <div class="row">
-               <div class="col-lg-6">
-                  <div class="form-grouṕ">
-                     <label for="celular1">Celular 1:</label>
-                     <input type="text" class="form-control" name="celular1" id="celular1" placeholder="(99) 9-9999-9999" ng-required="pf" value="@if(isset($query)){{ $query['celular1'] }}@endif" />
-                  </div>
-               </div>
-
                <div class="col-lg-6">
                   <div class="form-group">
                      <label for="celular2">Celular 2:</label>
@@ -115,6 +112,7 @@
                   </div>
                </div>
             </div>
+            -->
          </fieldset>
       </div>
       <div class="col-lg-5">
@@ -122,14 +120,17 @@
             <legend>Endereço</legend>
 
             <div class="form-group">
-               <label for="rua">Rua:</label>
-               <input type="text" class="form-control" name="rua" id="rua" placeholder="Rua..." value="@if(isset($query)){{ $query['rua'] }}@endif" />
+               <label for="cep">CEP:</label>
+                     <input type="text" class="form-control" name="cep" id="cep" placeholder="99999-999" value="@if(isset($query)){{ $query['cep'] }}@endif" />
+               
             </div>
 
             <div class="form-group">
-               <label for="bairro">Bairro:</label>
-               <input type="text" class="form-control" name="bairro" id="bairro" placeholder="Bairro..." value="@if(isset($query)){{ $query['bairro'] }}@endif" />
+               <label for="complemento">Complemento:</label>
+               <textarea name="complemento" class="form-control" id="complemento" rows="2" cols="40" placeholder="Complemento...">@if(isset($query)){{ $query['complemento'] }}@endif</textarea>
             </div>
+
+            
 
             <div class="row">
                <div class="col-lg-6">
@@ -141,10 +142,15 @@
 
                <div class="col-lg-6">
                   <div class="form-group">
-                     <label for="cep">CEP:</label>
-                     <input type="text" class="form-control" name="cep" id="cep" placeholder="99999-999" value="@if(isset($query)){{ $query['cep'] }}@endif" />
+                     <label for="rua">Rua:</label>
+                     <input type="text" class="form-control" name="rua" id="rua" placeholder="Rua..." value="@if(isset($query)){{ $query['rua'] }}@endif" />
                   </div>
                </div>
+            </div>
+
+            <div class="form-group">
+               <label for="bairro">Bairro:</label>
+               <input type="text" class="form-control" name="bairro" id="bairro" placeholder="Bairro..." value="@if(isset($query)){{ $query['bairro'] }}@endif" />
             </div>
 
             <div class="row">
@@ -158,24 +164,12 @@
                <div class="col-lg-6">
                   <div class="form-group">
                      <label for="idestado">UF:</label>
-                     <select class="form-control" name="idestado" id="idestad">
-                        <option value="0">---UF---</option>
-                           @foreach($states as $key => $value)
-                              @if(isset($query) && $value->idestado == $query['idestado'])
-                              <option value="{{$value->idestado}}" selected>{{ $value->nomeestado }}</option>
-                              @else
-                              <option value="{{$value->idestado}}">{{ $value->nomeestado }}</option>
-                              @endif
-                           @endforeach
-                     </select>
+                     <input type="text" class="form-control" name="idestado" id="idestado" placeholder="Estado..." value="@if(isset($query)){{ $query['idestado'] }}@endif" />
                   </div>
                </div>
             </div>
 
-            <div class="form-group">
-               <label for="complemento">Complemento:</label>
-               <textarea name="complemento" class="form-control" id="complemento" rows="2" cols="40" placeholder="Complemento...">@if(isset($query)){{ $query['complemento'] }}@endif</textarea>
-            </div>
+            
          </fieldset>
 
          <fieldset>
