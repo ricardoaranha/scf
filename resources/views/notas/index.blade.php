@@ -13,14 +13,15 @@
 
 <div class="row">
    <div class="col-md-4"><a href="{{ url('/invoice/register') }}" class="btn btn-success">Cadastrar</a></div>
-   <div class="col-md-3 col-md-offset-5">
+   <div class="col-md-4 col-md-offset-4">
       <form class="form-inline" action="{{ url('/invoice/search') }}" method="post">
          {{ csrf_field() }}
-         <div class="form-group">
+          <div class="form-group">
             <label class="sr-only" for="numeronota">Buscar</label>
             <input type="text" class="form-control" id="numeronota" name="numeronota" placeholder="Buscar" required />
-         </div>
-         <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+         
+            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+          </div>
       </form>
    </div>
 </div>

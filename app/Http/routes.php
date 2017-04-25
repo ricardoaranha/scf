@@ -46,6 +46,14 @@ Route::get('/bank/delete/{id}', 'BankController@delete');
 Route::get('/bank/edit/{id}', 'BankController@edit');
 Route::post('/bank/edit', 'BankController@update');
 
+// Despesa routes
+Route::get('/despesa', 'DespesaController@index');
+Route::get('/despesa/register', 'DespesaController@create');
+Route::post('/despesa/register', 'DespesaController@save');
+Route::get('/despesa/delete/{id}', 'DespesaController@delete');
+Route::get('/despesa/edit/{id}', 'DespesaController@edit');
+Route::post('/despesa/edit', 'DespesaController@update');
+
 // User routes
 Route::get('/user', 'UserController@index');
 Route::get('/user/register', 'UserController@create');

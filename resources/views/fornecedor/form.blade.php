@@ -68,11 +68,11 @@
             <div class="row">
                <div class="col-lg-6">
                   <label for="inscricaomunicipal">Inscrição Municipal:</label>
-                  <input type="text" class="form-control" name="inscricaomunicipal" id="inscricaomunicipal" placeholder="999999999"  ng-required="pj" value="@if(isset($query)){{ $query['inscricaomunicipal'] }}@endif" />
+                  <input type="text" class="form-control" name="inscricaomunicipal" id="inscricaomunicipal" placeholder="999999999"  value="@if(isset($query)){{ $query['inscricaomunicipal'] }}@endif" />
                </div>
                <div class="col-lg-6">
                   <label for="inscricaoestadual">Inscrição Estadual:</label>
-                  <input type="text" class="form-control" name="inscricaoestadual" id="inscricaoestadual" placeholder="999999999"  ng-required="pj" value="@if(isset($query)){{ $query['inscricaoestadual'] }}@endif" />
+                  <input type="text" class="form-control" name="inscricaoestadual" id="inscricaoestadual" placeholder="999999999"  value="@if(isset($query)){{ $query['inscricaoestadual'] }}@endif" />
                </div>
             </div>
             <div class="form-group">

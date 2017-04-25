@@ -36,8 +36,8 @@ class InvoiceController extends Controller {
          ->join('fornecedor', 'fornecedor.idfornecedor', '=', 'notafiscal.idfornecedor')
          ->join('statusnota','statusnota.idstatusnota','=','notafiscal.idstatus')
          ->join('unidade', 'unidade.idunidade', '=', 'notafiscal.idunidade')
-         ->where('numeronota', '=', $request['numeronota'])
-         ->orWhere('cnpj', '=', $request['numeronota'])
+         ->where('numeronota', 'like', '%'.$request['numeronota'].'%')
+         ->orWhere('cnpj', 'like', '%'.$request['numeronota'].'%')
          ->orWhere('nomepf', 'like', '%'.$request['numeronota'].'%')
          ->orWhere('nomepJ', 'like', '%'.$request['numeronota'].'%')
          ->orWhere('nomefantasia', 'like', '%'.$request['numeronota'].'%')
@@ -64,7 +64,7 @@ class InvoiceController extends Controller {
    public function save(Request $request) {
 
       $rules = [
-         'numeronota'          => 'required',
+         'numeronota'          => 'required|unique:notafiscal',
          'dtaemissao'          => 'required',
          'dtavencimento'       => 'required',
          'valor'               => 'required',

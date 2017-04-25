@@ -92,8 +92,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'numeronota' => [
+            'unique' => 'Número de nota já existe!',
         ],
     ],
 

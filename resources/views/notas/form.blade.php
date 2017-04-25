@@ -17,6 +17,27 @@
 	<div class="col-lg-8">
 		<form action="{{ url($url) }}" enctype="multipart/form-data" method="post">
 		{{ csrf_field() }}
+         <div class="form-group">
+            <label for="fornecedor">Fornecedor</label>
+            <select class="form-control" id="fornecedor" name="idfornecedor">
+               <option value="0">--- Fornecedores ---</option>
+               @foreach($fornecedor as $key => $value)
+                  @if($value->idtipo == 1)
+                     @if(isset($query) && $query['idfornecedor'] == $value->idfornecedor)
+                        <option value="{{$value->idfornecedor}}" selected>{{ $value->nomepf }} - {{ $value->cpf }}</option>
+                     @else
+                        <option value="{{$value->idfornecedor}}">{{ $value->nomepf }} - {{ $value->cpf }}</option>
+                     @endif
+                  @else
+                     @if(isset($query) && $query['idfornecedor'] == $value->idfornecedor)
+                        <option value="{{$value->idfornecedor}}" selected>{{ $value->nomefantasia }} - {{ $value->cnpj }}</option>
+                     @else
+                        <option value="{{$value->idfornecedor}}">{{ $value->nomefantasia }} - {{ $value->cnpj }}</option>
+                     @endif
+                  @endif
+                @endforeach
+            </select>
+         </div>
 			<div class="form-group">
 				<label for="numeronota">Número da Nota</label>
 				<input type="text" class="form-control" id="numeronota" name="numeronota" placeholder="Número da Nota" value="@if(isset($query)){{ $query['numeronota'] }}@endif" />
@@ -24,6 +45,19 @@
          @if(isset($query))
          <input type="hidden" name="idnotafiscal" id="idnotafiscal" value="{{$query['idnotafiscal']}}" />
          @endif
+         <div class="form-group">
+            <label for="unidade">Unidade</label>
+            <select class="form-control" id="unidade" name="idunidade">
+               <option value="0">--- Unidades ---</option>
+               @foreach($unidade as $key => $value)
+                  @if(isset($query) && $query['idunidade'] == $value->idunidade)
+                  <option value="{{$value->idunidade}}" selected>{{ $value->nome }}</option>
+                  @else
+                  <option value="{{$value->idunidade}}">{{ $value->nome }}</option>
+                  @endif
+                @endforeach
+            </select>
+         </div>
 			<div class="row">
 				<div class="col-lg-6">
                <div class="form-group">
@@ -42,40 +76,8 @@
 				<label for="valor">Valor</label>
 				<input type="text" class="form-control" id="valor" name="valor" placeholder="Valor" value="@if(isset($query)){{ $query['valor'] }}@endif" />
 			</div>
-			<div class="form-group">
-				<label for="unidade">Unidade</label>
-				<select class="form-control" id="unidade" name="idunidade">
-					<option value="0">--- Unidades ---</option>
-					@foreach($unidade as $key => $value)
-                	@if(isset($query) && $query['idunidade'] == $value->idunidade)
-                  <option value="{{$value->idunidade}}" selected>{{ $value->nome }}</option>
-                  @else
-                  <option value="{{$value->idunidade}}">{{ $value->nome }}</option>
-                  @endif
-                @endforeach
-				</select>
-			</div>
-			<div class="form-group">
-				<label for="fornecedor">Fornecedor</label>
-				<select class="form-control" id="fornecedor" name="idfornecedor">
-					<option value="0">--- Fornecedores ---</option>
-					@foreach($fornecedor as $key => $value)
-						@if($value->idtipo == 1)
-                     @if(isset($query) && $query['idfornecedor'] == $value->idfornecedor)
-							   <option value="{{$value->idfornecedor}}" selected>{{ $value->nomepf }}</option>
-                     @else
-                        <option value="{{$value->idfornecedor}}">{{ $value->nomepf }}</option>
-                     @endif
-						@else
-                     @if(isset($query) && $query['idfornecedor'] == $value->idfornecedor)
-                        <option value="{{$value->idfornecedor}}" selected>{{ $value->nomefantasia }}</option>
-                     @else
-                        <option value="{{$value->idfornecedor}}">{{ $value->nomefantasia }}</option>
-                     @endif
-						@endif
-                @endforeach
-				</select>
-			</div>
+			
+			
 			<div class="form-group">
 				<label for="observacao">Observação</label>
 				<textarea class="form-control" rows="3" id="observacao" name="observacao">@if(isset($query)){{ $query['observacao'] }}@endif</textarea>
