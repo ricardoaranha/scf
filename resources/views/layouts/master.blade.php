@@ -50,6 +50,7 @@
     <!-- jQuery -->
     <script src="{{ URL::asset('js/jquery.js') }}"></script>
     <script src="{{ URL::asset('js/jquery.maskedinput.min.js') }}"></script>
+    <script src="{{ URL::asset('js/jquery.maskMoney.min.js') }}"></script>
 
     <!-- AngularJS -->
     <script src="{{ URL::asset('js/angular/angular.min.js') }}"></script>
@@ -78,6 +79,7 @@
        $("#dtaemissao, #dtavencimento").mask("99/99/9999");
        //$("#inscricaomunicipal").mask("999999999");
        $("#inscricaoestadual").mask("999999999");
+       $("#valor").maskMoney({symbol:'R$ ', showSymbol:true, thousands:'.', decimal:',', symbolStay: true});
    });
 </script>
 

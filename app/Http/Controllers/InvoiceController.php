@@ -191,6 +191,9 @@ class InvoiceController extends Controller {
          'notafiscal'          => 'mimes:pdf'
       ];
 
+      $valor = str_replace('.', '', $request['valor']);
+      $request['valor'] = str_replace(',', '.', $valor);
+
       $nota = $request['numeronota'];
 
       $request['datacadastro'] = date('Y-m-d');
