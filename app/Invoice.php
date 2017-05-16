@@ -22,6 +22,7 @@ class Invoice extends Model
      'observacao',
      'idusuario',
      'notafiscal',
-     'bolnotafiscal'
+     'bolnotafiscal',
+     'iddespesa'
     ];
 }

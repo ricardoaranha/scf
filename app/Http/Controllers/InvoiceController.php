@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Invoice;
 use App\Unit;
 use App\Supplier;
+use App\Despesa;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
@@ -55,9 +56,11 @@ class InvoiceController extends Controller {
 
       $fornecedor = Supplier::all();
 
+      $despesa = Despesa::all();
+
       $url = '/invoice/register';
 
-      return view('notas.form', compact('title', 'unidade', 'fornecedor', 'url'));
+      return view('notas.form', compact('title', 'unidade', 'fornecedor', 'despesa', 'url'));
 
    }
 

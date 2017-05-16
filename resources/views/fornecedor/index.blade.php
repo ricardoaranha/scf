@@ -13,7 +13,7 @@
 <div class="row">
    <div class="col-md-4"><a href="{{ url('/supplier/register') }}" class="btn btn-success">Cadastrar</a></div>
 
-   <div class="col-md-3 col-md-offset-5">
+   <div class="col-md-4 col-md-offset-4">
       <form class="form-inline" action="{{ url('/supplier/search')}}" method="post">
          {{ csrf_field() }}
          <div class="form-group">
@@ -133,6 +133,7 @@
          </tbody>
       </table>
    </div>
+   <div class="col-md-12"><center>{{ $suppliers->links() }}</center></div>
 </div>
 
 <script>

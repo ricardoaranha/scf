@@ -30,9 +30,9 @@
                      @endif
                   @else
                      @if(isset($query) && $query['idfornecedor'] == $value->idfornecedor)
-                        <option value="{{$value->idfornecedor}}" selected>{{ $value->nomefantasia }} - {{ $value->cnpj }}</option>
+                        <option value="{{$value->idfornecedor}}" selected>{{ $value->nomepj }} - {{ $value->cnpj }}</option>
                      @else
-                        <option value="{{$value->idfornecedor}}">{{ $value->nomefantasia }} - {{ $value->cnpj }}</option>
+                        <option value="{{$value->idfornecedor}}">{{ $value->nomepj }} - {{ $value->cnpj }}</option>
                      @endif
                   @endif
                 @endforeach
@@ -58,6 +58,21 @@
                 @endforeach
             </select>
          </div>
+
+         <div class="form-group">
+            <label for="despesa">Tipo de despesa</label>
+            <select class="form-control" id="iddespesa" name="iddespesa">
+               <option value="0">--- Despesa ---</option>
+               @foreach($despesa as $key => $value)
+                  @if(isset($query) && $query['iddespesa'] == $value->iddespesa)
+                  <option value="{{$value->iddespesa}}" selected>{{ $value->nomedespesa }}</option>
+                  @else
+                  <option value="{{$value->iddespesa}}">{{ $value->nomedespesa }}</option>
+                  @endif
+                @endforeach
+            </select>
+         </div>
+
 			<div class="row">
 				<div class="col-lg-6">
                <div class="form-group">
@@ -68,7 +83,7 @@
 				<div class="col-lg-6">
                <div class="form-group">
    					<label for="dtavencimento">Data de Vencimento</label>
-   					<input type="text" class="form-control" id="dtavencimento" name="dtavencimento" placeholder="00/00/0000"value="@if(isset($query)){{ date('d/m/Y', strtotime($query['dtavencimento'])) }}@endif" />
+   					<input type="text" class="form-control" id="dtavencimento" name="dtavencimento" placeholder="00/00/0000" value="@if(isset($query)){{ date('d/m/Y', strtotime($query['dtavencimento'])) }}@endif" />
    				</div>
 				</div>
 			</div>

@@ -50,6 +50,9 @@
                 <li>
                     <a href="{{ url('/bank') }}">Bancos</a>
                 </li>
+                <li>
+                    <a href="{{ url('/despesa') }}">Tipos de Despesas</a>
+                </li>
             </ul>
         </li>
         <li>
