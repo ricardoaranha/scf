@@ -6,6 +6,7 @@ use App\Invoice;
 use App\Unit;
 use App\Supplier;
 use App\Despesa;
+use App\Mes;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
@@ -19,10 +20,11 @@ class InvoiceController extends Controller {
 
       $title = 'Notas Fiscais';
 
-      $invoice = Invoice::select('idnotafiscal', 'numeronota', 'dtaemissao', 'dtavencimento', 'valor', 'idstatus', 'dtacadastro', 'observacao', 'bolnotafiscal', 'idtipo', 'nomepf', 'nomepj', 'nome')
+      $invoice = Invoice::select('idnotafiscal', 'numeronota', 'dtaemissao', 'dtavencimento', 'valor', 'idstatus', 'dtacadastro', 'observacao', 'bolnotafiscal', 'idtipo', 'nomepf', 'nomepj', 'unidade.nome','mes.nome as nomemes')
          ->leftJoin('fornecedor', 'fornecedor.idfornecedor', '=', 'notafiscal.idfornecedor')
          ->leftJoin('statusnota','statusnota.idstatusnota','=','notafiscal.idstatus')
          ->leftJoin('unidade', 'unidade.idunidade', '=', 'notafiscal.idunidade')
+         ->leftJoin('mes','mes.idmes','=','notafiscal.idmes')
          ->get();
 
       return view('notas.index', compact('title', 'invoice'));
@@ -58,9 +60,11 @@ class InvoiceController extends Controller {
 
       $despesa = Despesa::all();
 
+      $mes = Mes::all();
+
       $url = '/invoice/register';
 
-      return view('notas.form', compact('title', 'unidade', 'fornecedor', 'despesa', 'url'));
+      return view('notas.form', compact('title', 'unidade', 'fornecedor', 'despesa', 'mes', 'url'));
 
    }
 
@@ -157,17 +161,21 @@ class InvoiceController extends Controller {
 
       $title = 'Editar Nota Fiscal';
 
-      $query = Invoice::select('idnotafiscal', 'numeronota', 'dtaemissao', 'dtavencimento', 'valor', 'idstatus', 'dtacadastro', 'observacao', 'bolnotafiscal', 'idfornecedor', 'idunidade')
+      $query = Invoice::select('idnotafiscal', 'numeronota', 'dtaemissao', 'dtavencimento', 'valor', 'idstatus', 'dtacadastro', 'observacao', 'bolnotafiscal', 'idfornecedor', 'idunidade','iddespesa','idmes')
          ->where('idnotafiscal', $id)
          ->first();
 
       $unidade = Unit::orderBy('nome', 'asc')->get();
 
+      $despesa = Despesa::all();
+
       $fornecedor = Supplier::all();
+
+      $mes = Mes::all();
 
       $url = '/invoice/edit';
 
-      return view('notas.form', compact('title', 'query', 'unidade', 'fornecedor', 'url'));
+      return view('notas.form', compact('title', 'query', 'unidade', 'fornecedor','despesa', 'mes', 'url'));
 
    }
 

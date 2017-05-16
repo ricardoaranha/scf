@@ -23,6 +23,7 @@ class Invoice extends Model
      'idusuario',
      'notafiscal',
      'bolnotafiscal',
-     'iddespesa'
+     'iddespesa',
+     'idmes'
     ];
 }

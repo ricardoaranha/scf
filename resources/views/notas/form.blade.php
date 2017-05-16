@@ -38,6 +38,19 @@
                 @endforeach
             </select>
          </div>
+         <div class="form-group">
+            <label for="mes">Mês referência</label>
+            <select class="form-control" id="idmes" name="idmes">
+               <option value="0">--- Mês de Referência ---</option>
+               @foreach($mes as $key => $value)
+                  @if(isset($query) && $query['idmes'] == $value->idmes)
+                  <option value="{{$value->idmes}}" selected>{{ $value->nome }}</option>
+                  @else
+                  <option value="{{$value->idmes}}">{{ $value->nome }}</option>
+                  @endif
+                @endforeach
+            </select>
+         </div>
 			<div class="form-group">
 				<label for="numeronota">Número da Nota</label>
 				<input type="text" class="form-control" id="numeronota" name="numeronota" placeholder="Número da Nota" value="@if(isset($query)){{ $query['numeronota'] }}@endif" />

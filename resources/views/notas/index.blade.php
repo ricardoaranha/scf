@@ -93,6 +93,9 @@
                   Número
                </th>
                <th>
+                 Mês Referência
+               </th>
+               <th>
                   Data Emissão
                </th>
                <th>
@@ -114,6 +117,7 @@
             @foreach($invoice as $key => $value)
                <tr>
                   <td>{{ $value->numeronota }}</td>
+                  <td>{{ $value->nomemes }}</td>
                   <td>{{ date('d/m/Y', strtotime($value->dtaemissao)) }}</td>
                   <td>{{ date('d/m/Y', strtotime($value->dtavencimento)) }}</td>
                   <td>R$ {{ $value->valor }}</td>
