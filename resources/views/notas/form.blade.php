@@ -102,7 +102,7 @@
 			</div>
 			<div class="form-group">
 				<label for="valor">Valor</label>
-				<input type="text" class="form-control" id="valor" name="valor" placeholder="Valor" value="@if(isset($query)){{ $query['valor'] }}@endif" />
+				<input type="text" class="form-control" id="valor" name="valor" placeholder="Valor" value="@if(isset($query)){{ number_format($query['valor'], 2, ',', '.') }}@endif" />
 			</div>
 			
 			

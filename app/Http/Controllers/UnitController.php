@@ -20,6 +20,17 @@ class UnitController extends Controller {
 
    }
 
+   public function search(Request $request) {
+
+      $title = 'Unidades';
+
+      $unidade = Unit::where('nome', 'like', '%'.$request['search'].'%')
+         ->get();
+
+      return view('unidade.index', compact('title', 'unidade'));
+
+   }
+
    public function create() {
 
       $title = 'Cadastrar Unidade';

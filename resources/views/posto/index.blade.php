@@ -11,9 +11,9 @@
 @include('layouts.msg')
 
 <div class="row">
-   <div class="col-md-4"><a href="{{ url('/unit/register') }}" class="btn btn-success">Cadastrar</a></div>
+   <div class="col-md-4"><a href="{{ url('/posto/register') }}" class="btn btn-success">Cadastrar</a></div>
    <div class="col-md-4 col-md-offset-4">
-      <form class="form-inline" action="{{ url('/unit/search') }}" method="post">
+      <form class="form-inline" action="{{ url('/posto/search') }}" method="post">
          {{ csrf_field() }}
          <div class="form-group">
             <label class="sr-only" for="search">Buscar</label>
@@ -35,10 +35,7 @@
                   Nome
                </th>
                <th>
-                  Cidade
-               </th>
-               <th>
-                  Estado
+                  Localização
                </th>
                <th></th>
                <th></th>
@@ -47,16 +44,15 @@
          </thead>
 
          <tbody>
-            @foreach($unidade as $key => $value)
+            @foreach($posto as $key => $value)
                <tr>
                   <td>{{ $value->nome }}</td>
-                  <td>{{ $value->cidade }}</td>
-                  <td>{{ $value->uf }}</td>
+                  <td>{{ $value->localizacao }}</td>
                   <td>
-                     <a href="{{ url('/unit/edit/'.$value->idunidade) }}"><span class="text-warning glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                     <a href="{{ url('/posto/edit/'.$value->idposto) }}"><span class="text-warning glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                   </td>
                   <td>
-                     <a href="{{ url('/unit/delete/'.$value->idunidade) }}" onclick="return confirm('Você tem certeza disso?!')"><span class="text-danger glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                     <a href="{{ url('/posto/delete/'.$value->idposto) }}" onclick="return confirm('Você tem certeza disso?!')"><span class="text-danger glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                   </td>
                </tr>
             @endforeach

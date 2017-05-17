@@ -53,6 +53,9 @@
                 <li>
                     <a href="{{ url('/despesa') }}">Tipos de Despesas</a>
                 </li>
+                <li>
+                    <a href="{{ url('/posto') }}">Postos de Gasolina</a>
+                </li>
             </ul>
         </li>
         <li>

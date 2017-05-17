@@ -120,7 +120,7 @@
                   <td>{{ $value->nomemes }}</td>
                   <td>{{ date('d/m/Y', strtotime($value->dtaemissao)) }}</td>
                   <td>{{ date('d/m/Y', strtotime($value->dtavencimento)) }}</td>
-                  <td>R$ {{ $value->valor }}</td>
+                  <td>R$ {{ number_format($value->valor, 2, ',', '.') }}</td>
                   @if($value->idtipo == 1)
                      <td>{{ $value->nomepf }}</td>
                   @else
@@ -128,7 +128,7 @@
                   @endif
                   <td>
                      @if($value->bolnotafiscal == 0)
-                     <a href="#send" data-toggle="modal" data-target="#send" ng-model="data" ng-click="data = {{ $value }}" class="btn btn-danger"><span class="glyphicon glyphicon-file"></span> Enviar Nota</a>
+                     <a href="#send" data-toggle="modal" data-target="#send" ng-model="data" ng-click="data = {{ $value }}" class="btn btn-danger"><span class="glyphicon glyphicon-file"></span> Anexar Nota</a>
                      @else
                      <a href="{{ url('/invoice/show/'.$value->idnotafiscal.'/'.$value->numeronota) }}" target="_blank" class="btn btn-success"><span class="glyphicon glyphicon-file"></span> Visualizar Nota</a>
                      @endif

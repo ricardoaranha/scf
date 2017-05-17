@@ -17,31 +17,31 @@
 		{{ csrf_field() }}
 			<div class="form-group">
 				<label for="nome">Nome:</label>
-				<input type="text" class="form-control" name="nome" id="nome" placeholder="Nome da Unidade" value="@if(isset($query)) {{$query['nome']}} @endif">
+				<input type="text" class="form-control" name="nome" id="nome" placeholder="Nome da Unidade" value="@if(isset($query)){{$query['nome']}}@endif">
 			</div>
 			@if(isset($query))<input type="hidden" id="idunidade" name="idunidade" value="{{$query['idunidade']}}"> @endif
 			<div class="form-group">
 		       <label for="rua">Rua:</label>
-		       <input type="text" class="form-control" name="rua" id="rua" placeholder="Rua..." value="@if(isset($query)) {{$query['rua']}} @endif"/>
+		       <input type="text" class="form-control" name="rua" id="rua" placeholder="Rua..." value="@if(isset($query)){{$query['rua']}}@endif"/>
 		    </div>
 
 		    <div class="form-group">
 		       <label for="bairro">Bairro:</label>
-		       <input type="text" class="form-control" name="bairro" id="bairro" placeholder="Bairro..." value="@if(isset($query)) {{$query['bairro']}} @endif"/>
+		       <input type="text" class="form-control" name="bairro" id="bairro" placeholder="Bairro..." value="@if(isset($query)){{$query['bairro']}}@endif"/>
 		    </div>
 
 		    <div class="row">
 		       <div class="col-lg-6">
 		          <div class="form-group">
 		             <label for="numero">Número:</label>
-		             <input type="text" class="form-control" name="numero" id="numero" placeholder="Número..." value="@if(isset($query)) {{$query['numero']}} @endif"/>
+		             <input type="text" class="form-control" name="numero" id="numero" placeholder="Número..." value="@if(isset($query)){{$query['numero']}}@endif"/>
 		          </div>
 		       </div>
 
 		       <div class="col-lg-6">
 		          <div class="form-group">
 		             <label for="cep">CEP:</label>
-		             <input type="text" class="form-control" name="cep" id="cep" placeholder="99999-999" value="@if(isset($query)) {{$query['cep']}} @endif"/>
+		             <input type="text" class="form-control" name="cep" id="cep" placeholder="99999-999" value="@if(isset($query)){{$query['cep']}}@endif"/>
 		          </div>
 		       </div>
 		    </div>
@@ -50,7 +50,7 @@
 		       <div class="col-lg-6">
 		          <div class="form-group">
 		             <label for="cidade">Cidade:</label>
-		             <input type="text" class="form-control" name="cidade" id="cidade" placeholder="Cidade..." value="@if(isset($query)) {{$query['cidade']}} @endif"/>
+		             <input type="text" class="form-control" name="cidade" id="cidade" placeholder="Cidade..." value="@if(isset($query)){{$query['cidade']}}@endif"/>
 		          </div>
 		       </div>
 

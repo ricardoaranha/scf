@@ -37,6 +37,7 @@ Route::post('/unit/register', 'UnitController@save');
 Route::get('/unit/delete/{id}', 'UnitController@delete');
 Route::get('/unit/edit/{id}', 'UnitController@edit');
 Route::post('/unit/edit', 'UnitController@update');
+Route::post('/unit/search', 'UnitController@search');
 
 // Bank routes
 Route::get('/bank', 'BankController@index');
@@ -66,6 +67,15 @@ Route::get('/user/redefinirsenha/{id}/{login}', 'UserController@redefinirsenha')
 // Password routes
 Route::get('/password/{id}', 'PassController@index');
 Route::post('/password/edit', 'PassController@update');
+
+// Posto routes
+Route::get('/posto', 'PostoController@index');
+Route::get('/posto/register', 'PostoController@create');
+Route::post('/posto/register', 'PostoController@save');
+Route::get('/posto/delete/{id}', 'PostoController@delete');
+Route::get('/posto/edit/{id}', 'PostoController@edit');
+Route::post('/posto/edit', 'PostoController@update');
+Route::post('/posto/search', 'PostoController@search');
 
 
 Route::get('laravel-version', function() {
