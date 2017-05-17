@@ -81,6 +81,9 @@ class InvoiceController extends Controller {
 
       $nota = $request['numeronota'];
 
+      $valor = str_replace('.', '', $request['valor']);
+      $request['valor'] = str_replace(',', '.', $valor);
+
       $request['dtacadastro'] = date('Y-m-d');
 
       $dtavencimento = explode('/', $request['dtavencimento']);

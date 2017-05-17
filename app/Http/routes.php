@@ -86,6 +86,15 @@ Route::get('/notacombustivel/edit/{id}', 'NotacombustivelController@edit');
 Route::post('/notacombustivel/edit', 'NotacombustivelController@update');
 Route::post('/notacombustivel/search', 'NotacombustivelController@search');
 
+// Diárias routes
+Route::get('/diaria', 'DiariaController@index');
+Route::get('/diaria/register', 'DiariaController@create');
+Route::post('/diaria/register', 'DiariaController@save');
+Route::get('/diaria/delete/{id}', 'DiariaController@delete');
+Route::get('/diaria/edit/{id}', 'DiariaController@edit');
+Route::post('/diaria/edit', 'DiariaController@update');
+Route::post('/diaria/search', 'DiariaController@search');
+
 
 Route::get('laravel-version', function() {
     $laravel = app();

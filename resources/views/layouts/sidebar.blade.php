@@ -34,6 +34,9 @@
             <a href="{{ url('/notacombustivel') }}"><i class="fa fa-fw fa-car"></i> Nota de Combustível</a>
         </li>
         <li>
+            <a href="{{ url('/diaria') }}"><i class="fa fa-fw fa-money"></i> Diárias</a>
+        </li>
+        <li>
            <a href="javascript:;" data-toggle="collapse" data-target="#relatorios"><i class="fa fa-fw fa-list"></i> Relatórios <i class="fa fa-fw fa-caret-down"></i></a>
            <ul id="relatorios" class="collapse">
                <li>

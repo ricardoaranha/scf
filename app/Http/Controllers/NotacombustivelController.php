@@ -72,6 +72,9 @@ class NotacombustivelController extends Controller {
 
       $numnota = $request['numnota'];
 
+      $valor = str_replace('.', '', $request['valor']);
+      $request['valor'] = str_replace(',', '.', $valor);
+
       $validator = Validator::make($request->all(), $rules);
 
       if ($validator->fails()) {
@@ -139,6 +142,9 @@ class NotacombustivelController extends Controller {
       ];
 
       $numnota = $request['numnota'];
+
+      $valor = str_replace('.', '', $request['valor']);
+      $request['valor'] = str_replace(',', '.', $valor);
 
       $validator = Validator::make($request->all(), $rules);
 
