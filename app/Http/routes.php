@@ -77,6 +77,15 @@ Route::get('/posto/edit/{id}', 'PostoController@edit');
 Route::post('/posto/edit', 'PostoController@update');
 Route::post('/posto/search', 'PostoController@search');
 
+// Nota Combustivel routes
+Route::get('/notacombustivel', 'NotacombustivelController@index');
+Route::get('/notacombustivel/register', 'NotacombustivelController@create');
+Route::post('/notacombustivel/register', 'NotacombustivelController@save');
+Route::get('/notacombustivel/delete/{id}', 'NotacombustivelController@delete');
+Route::get('/notacombustivel/edit/{id}', 'NotacombustivelController@edit');
+Route::post('/notacombustivel/edit', 'NotacombustivelController@update');
+Route::post('/notacombustivel/search', 'NotacombustivelController@search');
+
 
 Route::get('laravel-version', function() {
     $laravel = app();

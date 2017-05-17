@@ -31,7 +31,7 @@
             <a href="{{ url('/home') }}"><i class="fa fa-fw fa-file"></i> Emissão de DARF</a>
         </li>
         <li>
-            <a href="{{ url('/home') }}"><i class="fa fa-fw fa-car"></i> Nota de Combustível</a>
+            <a href="{{ url('/notacombustivel') }}"><i class="fa fa-fw fa-car"></i> Nota de Combustível</a>
         </li>
         <li>
            <a href="javascript:;" data-toggle="collapse" data-target="#relatorios"><i class="fa fa-fw fa-list"></i> Relatórios <i class="fa fa-fw fa-caret-down"></i></a>
