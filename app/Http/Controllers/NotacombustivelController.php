@@ -14,7 +14,7 @@ class NotacombustivelController extends Controller {
 
    public function index() {
 
-      $title = 'Notas de Combustíveis';
+      $title = 'Notas de Combustível';
 
       $notacombustivel = Notacombustivel::select('idnotacombustivel','numnota','postogasolina.nome as nomeposto','unidade.nome as nomeunidade','carro','tipocombustivel.nome as nometipocombustivel','litros','valor','data')
          ->leftJoin('postogasolina','postogasolina.idposto','=','notacombustivel.idposto')
@@ -28,7 +28,7 @@ class NotacombustivelController extends Controller {
 
    public function search(Request $request) {
 
-      $title = 'Notas de Combustíveis';
+      $title = 'Notas de Combustível';
 
       $notacombustivel = Notacombustivel::select('idnotacombustivel','numnota','postogasolina.nome as nomeposto','unidade.nome as nomeunidade','carro','tipocombustivel.nome as nometipocombustivel','litros','valor','date_format(data, ‘%d/%m/%Y’) as datanota')
          ->leftJoin('postogasolina','postogasolina.idposto','=','notacombustivel.idposto')

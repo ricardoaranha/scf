@@ -1,4 +1,7 @@
 <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+<?php
+$idniveluser = session()->get('user')['idniveluser'];
+?>
 <div class="collapse navbar-collapse navbar-ex1-collapse">
    <ul class="nav navbar-nav side-nav">
         <li class="active">
@@ -13,6 +16,9 @@
         <li>
             <a href="javascript:;" data-toggle="collapse" data-target="#controle"><i class="fa fa-fw fa-bar-chart-o"></i> Controle de Notas <i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="controle" class="collapse">
+                <li>
+                    <a href="{{ url('/pagamento') }}">Pagamento</a>
+                </li>
                 <li>
                     <a href="{{ url('/unit') }}">Notas Escanear</a>
                 </li>
@@ -61,9 +67,12 @@
                 </li>
             </ul>
         </li>
-        <li>
-            <a href="{{ url('/user') }}"><i class="fa fa-fw fa-user"></i> Usuários</a>
-        </li>
+        @if($idniveluser == 1)
+            <li>
+                <a href="{{ url('/user') }}"><i class="fa fa-fw fa-user"></i> Usuários</a>
+            </li>
+        @endif
+        
         <li>
             <a href="{{ url('/password/'.session()->get('user')['userid']) }}"><i class="fa fa-fw fa-refresh"></i> Trocar Senha</a>
         </li>

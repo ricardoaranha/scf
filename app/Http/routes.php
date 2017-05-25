@@ -1,5 +1,7 @@
 <?php
 
+$idniveluser = session()->get('user')['idniveluser'];
+
 // Login routes
 Route::get('/', 'LoginController@index');
 Route::post('/login', 'LoginController@auth');
@@ -55,6 +57,7 @@ Route::get('/despesa/delete/{id}', 'DespesaController@delete');
 Route::get('/despesa/edit/{id}', 'DespesaController@edit');
 Route::post('/despesa/edit', 'DespesaController@update');
 
+if($idniveluser == 1){
 // User routes
 Route::get('/user', 'UserController@index');
 Route::get('/user/register', 'UserController@create');
@@ -63,7 +66,7 @@ Route::get('/user/delete/{id}', 'UserController@delete');
 Route::get('/user/edit/{id}', 'UserController@edit');
 Route::post('/user/edit', 'UserController@update');
 Route::get('/user/redefinirsenha/{id}/{login}', 'UserController@redefinirsenha');
-
+}
 // Password routes
 Route::get('/password/{id}', 'PassController@index');
 Route::post('/password/edit', 'PassController@update');
@@ -94,6 +97,10 @@ Route::get('/diaria/delete/{id}', 'DiariaController@delete');
 Route::get('/diaria/edit/{id}', 'DiariaController@edit');
 Route::post('/diaria/edit', 'DiariaController@update');
 Route::post('/diaria/search', 'DiariaController@search');
+
+// Pagamento
+Route::get('/pagamento', 'PagamentoController@index');
+Route::post('pagamento/pagar', 'PagamentoController@pagar');
 
 
 Route::get('laravel-version', function() {

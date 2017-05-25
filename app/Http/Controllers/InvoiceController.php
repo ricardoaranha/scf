@@ -20,12 +20,14 @@ class InvoiceController extends Controller {
 
       $title = 'Notas Fiscais';
 
-      $invoice = Invoice::select('idnotafiscal', 'numeronota', 'dtaemissao', 'dtavencimento', 'valor', 'idstatus', 'dtacadastro', 'observacao', 'bolnotafiscal', 'idtipo', 'nomepf', 'nomepj', 'unidade.nome','mes.nome as nomemes')
+      $invoice = Invoice::select('idnotafiscal', 'numeronota', 'dtaemissao', 'dtavencimento', 'valor', 'idstatus', 'dtacadastro', 'observacao', 'bolnotafiscal', 'idtipo', 'nomepf', 'nomepj', 'unidade.nome as nomeunidade','mes.nome as nomemes')
          ->leftJoin('fornecedor', 'fornecedor.idfornecedor', '=', 'notafiscal.idfornecedor')
          ->leftJoin('statusnota','statusnota.idstatusnota','=','notafiscal.idstatus')
          ->leftJoin('unidade', 'unidade.idunidade', '=', 'notafiscal.idunidade')
          ->leftJoin('mes','mes.idmes','=','notafiscal.idmes')
-         ->get();
+         ->orderBy('unidade.idunidade','asc')
+         ->orderBy('mes.idmes','asc')
+         ->paginate(15);
 
       return view('notas.index', compact('title', 'invoice'));
 
@@ -35,16 +37,19 @@ class InvoiceController extends Controller {
 
       $title = 'Notas Fiscais';
 
-      $invoice = Invoice::select('idnotafiscal', 'numeronota', 'dtaemissao', 'dtavencimento', 'valor', 'idstatus', 'dtacadastro', 'observacao', 'bolnotafiscal', 'idtipo', 'nomepf', 'nomepj', 'nome')
-         ->join('fornecedor', 'fornecedor.idfornecedor', '=', 'notafiscal.idfornecedor')
-         ->join('statusnota','statusnota.idstatusnota','=','notafiscal.idstatus')
-         ->join('unidade', 'unidade.idunidade', '=', 'notafiscal.idunidade')
+      $invoice = Invoice::select('idnotafiscal', 'numeronota', 'dtaemissao', 'dtavencimento', 'valor', 'idstatus', 'dtacadastro', 'observacao', 'bolnotafiscal', 'idtipo', 'nomepf', 'nomepj', 'unidade.nome as nomeunidade','mes.nome as nomemes')
+         ->leftJoin('fornecedor', 'fornecedor.idfornecedor', '=', 'notafiscal.idfornecedor')
+         ->leftJoin('statusnota','statusnota.idstatusnota','=','notafiscal.idstatus')
+         ->leftJoin('unidade', 'unidade.idunidade', '=', 'notafiscal.idunidade')
+         ->leftJoin('mes','mes.idmes','=','notafiscal.idmes')
          ->where('numeronota', 'like', '%'.$request['numeronota'].'%')
          ->orWhere('cnpj', 'like', '%'.$request['numeronota'].'%')
          ->orWhere('nomepf', 'like', '%'.$request['numeronota'].'%')
          ->orWhere('nomepJ', 'like', '%'.$request['numeronota'].'%')
          ->orWhere('nomefantasia', 'like', '%'.$request['numeronota'].'%')
-         ->get();
+         ->orderBy('unidade.idunidade','asc')
+         ->orderBy('mes.idmes','asc')
+         ->paginate(15);
 
       return view('notas.index', compact('title', 'invoice'));
 
@@ -71,7 +76,7 @@ class InvoiceController extends Controller {
    public function save(Request $request) {
 
       $rules = [
-         'numeronota'          => 'required|unique:notafiscal',
+         'numeronota'          => 'required',
          'dtaemissao'          => 'required',
          'dtavencimento'       => 'required',
          'valor'               => 'required',
@@ -80,6 +85,23 @@ class InvoiceController extends Controller {
       ];
 
       $nota = $request['numeronota'];
+      $idfornecedor = $request['idfornecedor'];
+      $count = 0;
+
+      $verifica = Invoice::select('idnotafiscal')
+         ->where('numeronota', '=', $nota)
+         ->where('idfornecedor', '=', $idfornecedor)
+         ->get();
+
+      foreach($verifica as $key => $value){
+            $count = 1;
+      }
+
+      if ($count > 0) {
+         return redirect()->action('InvoiceController@create')
+            ->with('class', 'danger')
+            ->with('msg', 'Nota fiscal (Nº "'.$nota.'") já cadastrada  para esse fornecedor!');
+      }
 
       $valor = str_replace('.', '', $request['valor']);
       $request['valor'] = str_replace(',', '.', $valor);
@@ -93,7 +115,7 @@ class InvoiceController extends Controller {
       $request['dtaemissao'] = $dtaemissao[2].'-'.$dtaemissao[1].'-'.$dtaemissao[0];
 
       $request['idstatus'] = 1;
-      $request['idusuario'] = 1;
+      $request['idusuario'] = session()->get('user')['userid'];
 
       $validator = Validator::make($request->all(), $rules);
 

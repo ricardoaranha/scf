@@ -34,7 +34,7 @@ class SupplierController extends Controller {
          ->orWhere('nomefantasia', 'like', '%'.$request['params'].'%')
          ->orWhere('cpf', 'like', '%'.$request['params'].'%')
          ->orWhere('cnpj', 'like', '%'.$request['params'].'%')
-         ->get();
+         ->paginate(15);
 
       return view('fornecedor.index', compact('title', 'suppliers'));
 
@@ -135,7 +135,7 @@ class SupplierController extends Controller {
 
          $rules['nomepf']     = 'required';
          $rules['cpf']        = 'required';
-         $rules['celular1']   = 'required';
+         
 
          $fornecedor = $request['nomepf'];
 
@@ -146,8 +146,7 @@ class SupplierController extends Controller {
          $rules['nomefantasia'] = 'required';
          $rules['nomepj']       = 'required';
          $rules['cnpj' ]        = 'required';
-         $rules['nomecontato']  = 'required';
-         $rules['telefone1']    = 'required';
+         
 
          $fornecedor = $request['nomepj'];
 

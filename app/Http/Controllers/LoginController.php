@@ -25,7 +25,8 @@ class LoginController extends Controller
          $user = [
             'userid' => $user->userid,
             'userfirstname' => $user->userfirstname,
-				'userlastname' => $user->userlastname
+				'userlastname' => $user->userlastname,
+            'idniveluser'  => $user->idniveluser
          ];
 
          session()->put('user', $user);
