@@ -28,27 +28,31 @@
 
 <br />
 
-<div class="modal fade" id="details" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="send" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Detalhes</h4>
+        <h4 class="modal-title" id="myModalLabel">Envio de Nota Fiscal</h4>
       </div>
       <div class="modal-body">
-        <ul class="list-unstyled">
-           <li><strong>Cadastrada em: </strong> <% data.dtacadastro | date: 'dd/MM/yyyy' %></li>
-           <li><strong>Numero: </strong><% data.numeronota %></li>
-           <li><strong>Data de Emissão: </strong><% data.dtaemissao | date: 'dd/MM/yyyy' %></li>
-           <li><strong>Data de Vencimento: </strong><% data.dtavencimento | date: 'dd/MM/yyyy' %></li>
-           <li><strong>Valor: </strong>R$ <% data.valor %></li>
-           <li><strong>Fornecedor: </strong><% data.nomepf %><% data.nomepj %></li>
-           <li><strong>Unidade: </strong><% data.nome %></li>
-           <li><strong>Observações: </strong><% data.observacao %></li>
-        </ul>
-        <div class="modal-footer" ng-if="data.bolnotafiscal == 1">
-           <a href="{{ url('/invoice/show') }}/<% data.idnotafiscal %>/<% data.numeronota %>" target="_blank" class="btn btn-success"><span class="glyphicon glyphicon-file"></span> Visualizar Nota</a>
-        </div>
+         <h3>Nota Fiscal nº <% data.numeronota %></h3>
+         <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10">
+               <form action="{{ url('/pagamento/send') }}" enctype="multipart/form-data" method="post">
+                  {{ csrf_field() }}
+                  <div class="form-group">
+                     <label for="notafiscal">Selecione o arquivo: </label>
+                     <input type="file" class="form-control" id="notafiscal" name="notafiscal" aria-describedby="helpBlock" />
+                     <span id="helpBlock" class="help-block">* Somente arquivos em .pdf</span>
+                     <input type="hidden" id="idnotafiscal" name="idnotafiscal" value="<% data.idnotafiscal %>">
+                  </div>
+                  <input type="submit" class="btn btn-success" value="Enviar">
+               </form>
+            </div>
+            <div class="col-xs-1"></div>
+         </div>
       </div>
     </div>
   </div>
@@ -86,11 +90,11 @@
                   </div>
                   <div class="form-group">
                     <label for="valor">Valor</label>
-                    <input type="text" class="form-control" id="valor" name="valor" placeholder="Valor" value="@if(isset($query)){{ number_format($query['valor'], 2, ',', '.') }}@endif" onblur="calcular()"/>
+                    <input type="text" class="form-control" id="valor" name="valor" placeholder="Valor" value="<% data.valor %>" />
                   </div>
                   <div class="form-group">
                     <label for="multa">Multa por Atraso</label>
-                    <input type="text" class="form-control" id="multa" name="multa" placeholder="Multa por atraso" value="" onblur="calcular()"/>
+                    <input type="text" class="form-control" id="multa" name="multa" placeholder="Multa por atraso" value="" />
                   </div>
                   <div class="row">
                     <div class="col-lg-6">
@@ -102,9 +106,8 @@
                     <input type="hidden" class="form-control" id="datacadastro" name="datacadastro"  value="{{date('d/m/Y')}}" />
                   </div>
                   <div class="form-group">
-                    <label for="total">Total</label>
-                    <div id=resultado></div>
-                    <input type="hidden" class="form-control" id="total" name="total" value="" />
+                    <label for="total">Total por Atraso</label>
+                    <input type="text" class="form-control" id="total" name="total" placeholder="Total" value="" />
                   </div>
                   <div class="form-group">
                         <input type="submit" class="btn btn-success" value="@if(isset($query)) Salvar @else Cadastrar @endif" />
@@ -142,16 +145,13 @@
                   Data Emissão
                </th>
                <th>
-                  Data Vencimento
+                 Data Pagamento
                </th>
                <th>
                   Valor
                </th>
                <th>
                   Fornecedor
-               </th>
-               <th>
-                  Pagar Nota
                </th>
             </tr>
          </thead>
@@ -163,7 +163,7 @@
                   <td>{{ $value->nomemes }}</td>
                   <td>{{ $value->nomeunidade }}</td>
                   <td>{{ date('d/m/Y', strtotime($value->dtaemissao)) }}</td>
-                  <td>{{ date('d/m/Y', strtotime($value->dtavencimento)) }}</td>
+                  <td>{{ $value->datapagamento }}</td>
                   <td>R$ {{ number_format($value->valor, 2, ',', '.') }}</td>
                   @if($value->idtipo == 1)
                      <td>{{ $value->nomepf }}</td>
@@ -171,10 +171,14 @@
                      <td>{{ $value->nomepj }}</td>
                   @endif
                   <td>
-                     <a href="#pagar" data-toggle="modal" data-target="#pagar" ng-model="data" ng-click="data = {{ $value }}" class="btn btn-danger"><span class="glyphicon glyphicon-file"></span> Pagar</a>
+                     <a href="{{ url('pagamento/edit/'.$value->idpagamento) }}" class="btn btn-success"><span class="text-warning glyphicon glyphicon-edit"></span> Alterar Pagamento</a>
                   </td>
                   <td>
-                     <a href="#details" data-toggle="modal" data-target="#details" ng-click="data = {{ $value }}"><span class="text-primary glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+                     @if($value->bolnotafiscal == 0)
+                     <a href="#send" data-toggle="modal" data-target="#send" ng-model="data" ng-click="data = {{ $value }}" class="btn btn-danger"><span class="glyphicon glyphicon-file"></span> Anexar</a>
+                     @else
+                     <a href="{{ url('/invoice/show/'.$value->idnotafiscal.'/'.$value->numeronota) }}" target="_blank" class="btn btn-success"><span class="glyphicon glyphicon-file"></span> Visualizar</a>
+                     @endif
                   </td>
                   
                </tr>
@@ -184,27 +188,4 @@
    </div>
    <div class="col-md-12"><center>{{ $invoice->links() }}</center></div>
 </div>
-<script type="text/javascript">
-
-function check_num(Num){
-    var novoNum = Num.replace(".", "");
-    novoNum = novoNum.replace(",", ".");
-    novoNum=parseFloat(novoNum);
-    //alert(novoNum);
-    return novoNum;
-
-    
-}
-function calcular(){
-    var valor = document.getElementById('valor').value;
-    valor=check_num(valor);
-    //alert(valor);
-    var multa = document.getElementById('multa').value;
-    multa=check_num(multa);
-
-    document.getElementById('total').value = valor + multa;
-    document.getElementById('resultado').innerHTML = valor + multa;
-}
-
-</script>
 @endsection

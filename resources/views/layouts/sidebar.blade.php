@@ -17,19 +17,13 @@ $idniveluser = session()->get('user')['idniveluser'];
             <a href="javascript:;" data-toggle="collapse" data-target="#controle"><i class="fa fa-fw fa-bar-chart-o"></i> Controle de Notas <i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="controle" class="collapse">
                 <li>
+                    <a href="{{ url('/pagamento/notasescanear') }}">Notas Escanear</a>
+                </li>
+                <li>
                     <a href="{{ url('/pagamento') }}">Pagamento</a>
                 </li>
                 <li>
-                    <a href="{{ url('/unit') }}">Notas Escanear</a>
-                </li>
-                <li>
-                    <a href="{{ url('/bank') }}">Notas a Pagar</a>
-                </li>
-                <li>
-                    <a href="{{ url('/bank') }}">Confirmar Pagamento</a>
-                </li>
-                <li>
-                    <a href="{{ url('/bank') }}">Notas Pagas</a>
+                    <a href="{{ url('/pagamento/notaspagas') }}">Notas Pagas</a>
                 </li>
             </ul>
         </li>

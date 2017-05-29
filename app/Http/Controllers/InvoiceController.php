@@ -153,9 +153,9 @@ class InvoiceController extends Controller {
 
       if ($validator->fails()) {
 
-         return redirect()->action('SupplierController@create')
+         return redirect()->action('InvoiceController@index')
             ->with('class', 'danger')
-            ->with('msg', 'Erro ao tentar enviar Nota nº "'.$invoice['numeronota'].'", por favor tente novemente.')
+            ->with('msg', 'Erro ao tentar anexar Nota, por favor tente novemente.')
             ->withErrors($validator)
             ->withInput();
 

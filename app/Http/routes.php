@@ -101,6 +101,12 @@ Route::post('/diaria/search', 'DiariaController@search');
 // Pagamento
 Route::get('/pagamento', 'PagamentoController@index');
 Route::post('pagamento/pagar', 'PagamentoController@pagar');
+Route::get('/pagamento/notaspagas', 'PagamentoController@notaspagas');
+Route::get('/pagamento/notasescanear', 'PagamentoController@notasescanear');
+Route::get('/pagamento/edit/{id}', 'PagamentoController@edit');
+Route::post('/pagamento/edit', 'PagamentoController@update');
+Route::post('/pagamento/send', 'PagamentoController@upload');
+Route::post('/pagamento/search', 'PagamentoController@search');
 
 
 Route::get('laravel-version', function() {
