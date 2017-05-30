@@ -108,6 +108,10 @@ Route::post('/pagamento/edit', 'PagamentoController@update');
 Route::post('/pagamento/send', 'PagamentoController@upload');
 Route::post('/pagamento/search', 'PagamentoController@search');
 
+// Relatórios
+Route::get('/relatorio', 'RelatorioController@index');
+Route::match(array('GET', 'POST'), '/relatorio/notas', 'RelatorioController@notas');
+
 
 Route::get('laravel-version', function() {
     $laravel = app();

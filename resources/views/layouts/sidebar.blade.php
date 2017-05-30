@@ -40,7 +40,7 @@ $idniveluser = session()->get('user')['idniveluser'];
            <a href="javascript:;" data-toggle="collapse" data-target="#relatorios"><i class="fa fa-fw fa-list"></i> Relatórios <i class="fa fa-fw fa-caret-down"></i></a>
            <ul id="relatorios" class="collapse">
                <li>
-                   <a href="{{ url('/invoice/report') }}">Notas Fiscais</a>
+                   <a href="{{ url('/relatorio') }}">Notas Fiscais</a>
                </li>
            </ul>
         </li>

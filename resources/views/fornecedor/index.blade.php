@@ -105,7 +105,6 @@
                   {{ $value->cnpj }}
                   @endif
                </td>
-               </td>
                <td>
                   {{ $value->telefone1 }} <br /> {{ $value->telefone2 }}
                </td>

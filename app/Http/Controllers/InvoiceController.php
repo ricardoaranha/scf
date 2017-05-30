@@ -113,6 +113,7 @@ class InvoiceController extends Controller {
 
       $dtaemissao = explode('/', $request['dtaemissao']);
       $request['dtaemissao'] = $dtaemissao[2].'-'.$dtaemissao[1].'-'.$dtaemissao[0];
+      $request['anoreferencia'] = $dtaemissao[2];
 
       $request['idstatus'] = 1;
       $request['idusuario'] = session()->get('user')['userid'];
@@ -228,6 +229,7 @@ class InvoiceController extends Controller {
 
       $dtaemissao = explode('/', $request['dtaemissao']);
       $request['dtaemissao'] = $dtaemissao[2].'-'.$dtaemissao[1].'-'.$dtaemissao[0];
+      $request['anoreferencia'] = $dtaemissao[2];
 
       if ($request['notafiscal'] != null) {
          $notafiscal = $request->file('notafiscal')->getRealPath();

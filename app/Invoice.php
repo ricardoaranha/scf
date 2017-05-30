@@ -24,6 +24,7 @@ class Invoice extends Model
      'notafiscal',
      'bolnotafiscal',
      'iddespesa',
-     'idmes'
+     'idmes',
+     'anoreferencia'
     ];
 }
