@@ -68,6 +68,24 @@
 				</select>
 			</div>
 			<div class="form-group">
+				<div class="col-lg-2 col-md-offset-2">
+					<label for="todas">
+						<input type="radio" name="pago" value="*" checked>Todas
+	    			</label>
+    			</div>
+    			<div class="col-lg-2">
+	    			<label for="falta">
+	      				<input type="radio" name="pago" value="2">Falta Pagar
+	    			</label>
+	    		</div>
+	    		<div class="col-lg-6">
+	    			<label for="pagas">
+	      				<input type="radio" name="pago" value="1">Pagas
+	    			</label>
+	    		</div>
+			</div>
+			<!--
+			<div class="form-group">
 				<label for="iddespesa">Tipo de Despesa</label>
 				<select class="form-control" id="iddespesa" name="iddespesa">
 					<option value="0">--- Despesa ---</option>
@@ -77,6 +95,7 @@
 					@endforeach
 				</select>
 			</div>
+			-->
 			<div class="form-group">
 				<input type="submit" class="btn btn-success" value="Pesquisar" />
 				<input type="reset" class="btn btn-danger" value="Limpar" />
@@ -86,8 +105,9 @@
 	</div>
 </div>
 @else
-
+<a href="{{ url('/relatorio/download') }}" class="btn btn-danger" target="_blank"><span class="glyphicon glyphicon-save-file"></span> Imprimir</a>
 @foreach ($unidade as $kei => $unit)
+	
 	<h2>{{$unit->nome}}</h2>
 		@foreach($despesa as $kei => $valor)
 			<div class="row">
@@ -102,11 +122,12 @@
 			    				<th>Nº NF</th>
 			    				<th>Emissão</th>
 			    				<th>CPF/CNPJ</th>
-			    				<th>Valor</th>
 			    				<th>Data Pagamento</th>
+			    				<th>Valor</th>
 			    			</tr>
 			    		</thead>
 			    		<tbody>
+			    			<?php $total=0;?>
 			    			@foreach($invoice as $key => $value)
 			    				@if($valor->iddespesa == $value->iddespesa && $value->idunidade == $unit->idunidade)
 					    			<tr>
@@ -122,15 +143,21 @@
 					    				@else
 					    					<td>{{ $value->cnpj }}</td>
 					    				@endif
-					    				<td>R$ {{ number_format($value->valor, 2, ',', '.') }}</td>
 					    				@if($value->datapagamento <> '')
 					    					<td>{{ $value->datapagamento}}</td>
 					    				@else
 					    					<td>Falta pagar</td>
 					    				@endif
+					    				<td>R$ {{ number_format($value->valor, 2, ',', '.') }}</td>
 					    			</tr>
+					    			<?php $total=$total + $value->valor;?>
 					    		@endif
 			    			@endforeach
+			    			<tr>
+			    				<td colspan="4"></td>
+			    				<td><strong>TOTAL</strong></td>
+			    				<td><strong>R$ {{ number_format($total, 2, ',', '.') }}</strong></td>
+			    			</tr>
 			    		</tbody>
 			      	</table>
 				</div>

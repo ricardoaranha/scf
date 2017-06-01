@@ -32,7 +32,7 @@ class RelatorioController extends Controller {
 
 		$despesa = Despesa::all();
 
-		return view('relatorio.indexr', compact('title', 'url', 'mes', 'unidade', 'despesa', 'invoice'));
+		return view('relatorio.index', compact('title', 'url', 'mes', 'unidade', 'despesa', 'invoice'));
 	}
 
 	public function notas(Request $request){
@@ -62,14 +62,29 @@ class RelatorioController extends Controller {
 	      	$datafinal = $datafinal[2].'-'.$datafinal[1].'-'.$datafinal[0];
 
 	      	if($request['idunidade'] == 'todos'){
-	      		$request['idunidade'] = '*';
-	      	}
 
-	      	if($request['iddespesa'] == 'todos'){
-	      		$request['iddespesa'] = '*';
-	      	}
+  			$invoice = Invoice::select('notafiscal.iddespesa','despesa.nomedespesa','fornecedor.nomepf','fornecedor.nomepj','fornecedor.idtipo','notafiscal.numeronota','notafiscal.dtaemissao','fornecedor.cpf','fornecedor.cnpj','notafiscal.valor','notafiscal.idunidade','unidade.nome as nomeunidade','pagamento.datapagamento')
+				->leftJoin('despesa','despesa.iddespesa','=','notafiscal.iddespesa')
+				->leftJoin('fornecedor','fornecedor.idfornecedor','=','notafiscal.idfornecedor')
+				->leftJoin('unidade','unidade.idunidade','=','notafiscal.idunidade')
+				->leftJoin('pagamento','pagamento.idnotafiscal','=', 'notafiscal.idnotafiscal')
+				->whereBetween('notafiscal.dtaemissao', [$datainicial, $datafinal])
+				->Where('notafiscal.idstatus','<>',$request['pago'])
+				//->orWhere('notafiscal.iddespesa','=',$request['iddespesa'])
+				->get();
 
-			$invoice = Invoice::select('notafiscal.iddespesa','despesa.nomedespesa','fornecedor.nomepf','fornecedor.nomepj','fornecedor.idtipo','notafiscal.numeronota','notafiscal.dtaemissao','fornecedor.cpf','fornecedor.cnpj','notafiscal.valor','notafiscal.idunidade','unidade.nome as nomeunidade','pagamento.datapagamento')
+			$unidade = Invoice::select('unidade.idunidade','unidade.nome')
+				->distinct('unidade.idunidade')
+				->leftJoin('despesa','despesa.iddespesa','=','notafiscal.iddespesa')
+				->leftJoin('fornecedor','fornecedor.idfornecedor','=','notafiscal.idfornecedor')
+				->leftJoin('unidade','unidade.idunidade','=','notafiscal.idunidade')
+				->leftJoin('pagamento','pagamento.idnotafiscal','=', 'notafiscal.idnotafiscal')
+				->whereBetween('notafiscal.dtaemissao', [$datainicial, $datafinal])
+				->Where('notafiscal.idstatus','<>',$request['pago'])
+				//->orWhere('notafiscal.iddespesa','=',$request['iddespesa'])
+				->get();
+	      	}else{
+      		$invoice = Invoice::select('notafiscal.iddespesa','despesa.nomedespesa','fornecedor.nomepf','fornecedor.nomepj','fornecedor.idtipo','notafiscal.numeronota','notafiscal.dtaemissao','fornecedor.cpf','fornecedor.cnpj','notafiscal.valor','notafiscal.idunidade','unidade.nome as nomeunidade','pagamento.datapagamento')
 				->leftJoin('despesa','despesa.iddespesa','=','notafiscal.iddespesa')
 				->leftJoin('fornecedor','fornecedor.idfornecedor','=','notafiscal.idfornecedor')
 				->leftJoin('unidade','unidade.idunidade','=','notafiscal.idunidade')
@@ -91,13 +106,21 @@ class RelatorioController extends Controller {
 				->Where('notafiscal.idstatus','<>',$request['pago'])
 				//->orWhere('notafiscal.iddespesa','=',$request['iddespesa'])
 				->get();
+	      	}
+
+	      	//if($request['iddespesa'] == 'todos'){
+	      	//	$request['iddespesa'] = '*';
+	      	//}
+
+			
 
 			$despesa = Despesa::all();
 
-			session()->put('relatorio', $invoice);
+			session()->put('invoice', $invoice);
+			session()->put('unidade', $unidade);
 			session()->put('request', ['dtaInicio' => $request['datainicial'], 'dtaFim' => $request['datafinal']]);
 
-			return view('relatorio.indexr', compact('title','invoice','despesa','unidade'));
+			return view('relatorio.index', compact('title','invoice','despesa','unidade'));
 		}
 
 	}
@@ -106,13 +129,21 @@ class RelatorioController extends Controller {
 
 		$title = 'Relatório de Notas Fiscais';
 
-      	$invoice = session()->get('relatorio');
+      	$invoice = session()->get('invoice');
+
+      	$unidade = session()->get('unidade');
 
       	$request = session()->get('request');
 
-		$pdf = PDF::loadView('notas.download', compact('title', 'invoice','request'));
+      	$despesa = Despesa::all();
 
-		return $pdf->download('relatorio_notas_fiscais'.date('Y-m-d_H-i').'.pdf');
+      	return view('relatorio.download', compact('title', 'invoice','request','unidade','despesa'));
+
+		// $pdf = PDF::loadView('relatorio.download', compact('title', 'invoice','request','unidade','despesa'));
+
+		// $pdf->setOrientation('landscape');
+
+		// return $pdf->download('relatorio_notas_fiscais'.date('Y-m-d_H-i').'.pdf');
 
    }
 }
