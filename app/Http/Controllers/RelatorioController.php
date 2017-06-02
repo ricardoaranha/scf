@@ -118,7 +118,7 @@ class RelatorioController extends Controller {
 
 			session()->put('invoice', $invoice);
 			session()->put('unidade', $unidade);
-			session()->put('request', ['dtaInicio' => $request['datainicial'], 'dtaFim' => $request['datafinal']]);
+			session()->put('datas', ['dtaInicio' => $request['datainicial'], 'dtaFim' => $request['datafinal']]);
 
 			return view('relatorio.index', compact('title','invoice','despesa','unidade'));
 		}
@@ -133,11 +133,11 @@ class RelatorioController extends Controller {
 
       	$unidade = session()->get('unidade');
 
-      	$request = session()->get('request');
+      	$datas = session()->get('datas');
 
       	$despesa = Despesa::all();
 
-      	return view('relatorio.download', compact('title', 'invoice','request','unidade','despesa'));
+      	return view('relatorio.download', compact('title', 'invoice','datas','unidade','despesa'));
 
 		// $pdf = PDF::loadView('relatorio.download', compact('title', 'invoice','request','unidade','despesa'));
 

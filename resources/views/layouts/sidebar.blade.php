@@ -14,6 +14,9 @@ $idniveluser = session()->get('user')['idniveluser'];
             <a href="{{ url('/invoice') }}"><i class="fa fa-fw fa-table"></i> Notas Fiscais</a>
         </li>
         <li>
+            <a href="{{ url('/folha') }}"><i class="fa fa-fw fa-table"></i> Folha de Pagamento</a>
+        </li>
+        <li>
             <a href="javascript:;" data-toggle="collapse" data-target="#controle"><i class="fa fa-fw fa-bar-chart-o"></i> Controle de Notas <i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="controle" class="collapse">
                 <li>

@@ -108,6 +108,15 @@ Route::post('/pagamento/edit', 'PagamentoController@update');
 Route::post('/pagamento/send', 'PagamentoController@upload');
 Route::post('/pagamento/search', 'PagamentoController@search');
 
+// Folha de Pagaemtno routes
+Route::get('/folha', 'FolhaController@index');
+Route::get('/folha/register', 'FolhaController@create');
+Route::post('/folha/register', 'FolhaController@save');
+Route::get('/folha/delete/{id}', 'FolhaController@delete');
+Route::get('/folha/edit/{id}', 'FolhaController@edit');
+Route::post('/folha/edit', 'FolhaController@update');
+Route::post('/folha/search', 'FolhaController@search');
+
 // Relatórios
 Route::get('/relatorio', 'RelatorioController@index');
 Route::match(array('GET', 'POST'), '/relatorio/notas', 'RelatorioController@notas');

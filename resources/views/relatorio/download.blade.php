@@ -30,7 +30,7 @@
       <div class="col-lg-12">
          <div class="panel panel-default">
             <div class="panel-heading">
-               <strong>Período: {{ date('d/m/Y', strtotime($request['dtaInicio'])) }} - {{ date('d/m/Y', strtotime($request['dtaFim'])) }}</strong>
+               <strong>Período: {{$datas['dtaInicio']}} - {{$datas['dtaFim'] }}</strong>
             </div>
             <div class="panel-body">
                @foreach ($unidade as $kei => $unit)
